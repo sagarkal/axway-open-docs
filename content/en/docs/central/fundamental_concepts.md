@@ -46,7 +46,7 @@ AMPLIFY Central has its own set of roles in addition to the AMPLIFY Platform rol
 
 An AMPLIFY Central team is a group of users with varying abilities to manage and use assets. For example, a team member can share assets and their promotion to the Unified Catalog.
 
-Users and teams of AMPLIFY Central are managed by the AMPLIFY Platform. For more information, see [Managing Organizations](https://docs.axway.com/bundle/Appcelerator_Dashboard_allOS_en/page/managing_organizations.html).
+Users and teams of AMPLIFY Central are managed by the AMPLIFY Platform. For more information, see [Managing Organizations](https://docs.axway.com/bundle/AMPLIFY_Dashboard_allOS_en/page/managing_organizations.html).
 
 <!-- ### AMPLIFY Central roles -->
 
