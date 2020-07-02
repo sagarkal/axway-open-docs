@@ -291,9 +291,9 @@ HTTP protocol properties:
 |`localAddr`        |`string`           |Local host of transaction|
 |`localPort`        |`string`           |Local port of transaction|
 |`method`           |`string`           |HTTP method used|
-|`remoteAddr`       |`string`           |Remote host address of transaction|
+|`remoteAddr`       |`string`           |Remote host address of transaction. If the request is sent without a proxy, this is the IP address of the remote host in `remoteName`. If the request is sent via a proxy, the value is the IP address of the proxy server. Note that the host name of the proxy is not currently logged.|
 |`remoteName`       |`string`           |Name representing remote host of the transaction|
-|`remotePort`       |`string`           |Remote port of transaction|
+|`remotePort`       |`string`           |Remote port of transaction. If the request is sent via a proxy, the value is the port of the proxy server and the port of the remote host (`remoteName`) is not logged. Note that the host name of the proxy is not currently logged.|
 |`sslSubject`       |`string` or `null` |Subject name of peer certificate used to establish SSL connection|
 |`status`           |`integer`          |HTTP status code returned|
 |`statusText`       |`string`           |HTTP status message returned|
