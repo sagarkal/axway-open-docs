@@ -202,6 +202,30 @@ invalid signature error
 
 The key in `sso.jks` and the public key stored in Keycloak’s SAML keys for the application do not match as a keypair. Check the SAML keys in the IdP client, and import the correct certificate.
 
+## API Manager login page not shown
+
+If the API Manager login page cannot be loaded and a NullPointerException is logged in the instance trace file as follows:
+
+```
+ERROR   25/Jun/2020:09:38:10.280 [1e3b:000000000000000000000000] error handling connection: Success. SSL system call failed
+DEBUG   25/Jun/2020:09:38:10.283 [52da:7262f45eb20c460188ef1944] SSO - Parameters - Request URI Path : /api/portal/v1.3/currentuser [getCommonLayer #0]
+DEBUG   25/Jun/2020:09:38:10.286 [52da:7262f45eb20c460188ef1944] SSO - Error calculating the default fallback SSO Common Object Instance. Ex: :
+java.lang.NullPointerException
+  at com.vordel.common.apiserver.filter.sso.SSOJerseyFilter.getFallbackCommonLayer(SSOJerseyFilter.java:337)
+  at com.vordel.common.apiserver.filter.sso.SSOJerseyFilter.getCommonLayer(SSOJerseyFilter.java:441)
+  at com.vordel.common.apiserver.filter.sso.SSOJerseyFilter.filter(SSOJerseyFilter.java:227)
+  at org.glassfish.jersey.server.ContainerFilteringStage.apply(ContainerFilteringStage.java:132)
+  ...
+  at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+  at com.vordel.apiportal.api.PortalServletContainer.service(PortalServletContainer.java:78)
+  at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+
+DEBUG   25/Jun/2020:09:38:10.286 [52da:7262f45eb20c460188ef1944] SSO - defaulting to the fallback API Manager SSO Common Object Instance. [getCommonLayer #6]
+ERROR   25/Jun/2020:09:38:10.286 [52da:7262f45eb20c460188ef1944] SSO - There are not enough details in the request to determine the COI. Throwing an Invalid SSO request
+```
+
+The likely cause of this issue is that the servlet filter (`com.vordel.common.apiserver.filter.SSOBindingFeature`) has been configured for the API Manager Portal listen socket, but the required SSO configuration files (`service-provider.xml` and `service-provider-apiportal.xml`) are missing from the API Gateway instance `conf` folder.  
+
 ## Error on signing assertions
 
 After the user enters the credentials on the Keycloak page, the following error is seen:
