@@ -33,6 +33,8 @@ cd emt_containers-<version>
 ./build_anm_image.py -h
 ```
 
+See [Best practices for running API management in Docker containers](/docs/apim_howto_guides/apigw_in_containers/) for additional information.  
+
 ### Create a metrics-enabled Admin Node Manager image
 
 The following example creates an Admin Node Manager Docker image with a specified domain certificate that runs with metrics processing enabled. The Admin Node Manager container processes event logs from API Gateway containers and writes them to a specified metrics database. This is the recommended option and is suitable for a production environment.

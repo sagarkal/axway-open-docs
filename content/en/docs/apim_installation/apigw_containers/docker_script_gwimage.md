@@ -31,6 +31,8 @@ cd emt_containers-<version>
 ./build_gw_image.py -h
 ```
 
+See [Best practices for running API management in Docker containers](/docs/apim_howto_guides/apigw_in_containers/) for additional information.  
+
 The following examples show how you can use the script to build API Gateway Docker images.
 
 ### Create an API Gateway image using defaults

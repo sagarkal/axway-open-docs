@@ -43,15 +43,15 @@ To remove files and folders which are not required in the base images:
     /opt/Axway/apigateway/tools/sdk-generator
     ```
 
+    Download [`runInstall.sh`](/samples/apimanagement/howto/docker/runInstall.sh) for a complete example.
+
     It is best to version control any changes you make in the file.
 
 After these changes, the size of the generated Docker base images is reduced from 947MB to 747MB.
 
-Download a complete example of [`runInstall.sh`](/samples/apimanagement/howto/docker/runInstall.sh).
+### Optimize images for Node Manager and API Gateways
 
-### Layer images for Node Manager and API Gateways
-
-In addition, you can create a layered image for Admin Node Manager and the API Gateways and in these images you can remove additional folders that are not required.
+In addition, you can create a layered [multi-stage](https://docs.docker.com/develop/develop-images/multistage-build/) image for Admin Node Manager and the API Gateways and in these images you can remove additional folders that are not required.
 
 1. Open the file `Dockerfiles/emt-nodemanager/Dockerfile`.
 2. Change the line `FROM $PARENT_IMAGE` to `FROM $PARENT_IMAGE as base`.
@@ -62,6 +62,8 @@ In addition, you can create a layered image for Admin Node Manager and the API G
     COPY --from=base /opt/Axway/apigateway /opt/Axway/apigateway
     ```
 
-Download complete examples of [`anm-dockerfile`](/samples/apimanagement/howto/docker/anm-dockerfile)  and [`gw-dockerfile`](/samples/apimanagement/howto/docker/gw-dockerfile).
+4. Remove the folders that you do not require. Download the following complete example files to learn which folders you can remove in each image:
+    * [`anm-dockerfile`](/samples/apimanagement/howto/docker/anm-dockerfile)
+    * [`gw-dockerfile`](/samples/apimanagement/howto/docker/gw-dockerfile)
 
 This reduces the size of the API Gateway image to 715 MB and the Admin Node Manager image to 708 MB.
