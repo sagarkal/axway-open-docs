@@ -75,4 +75,4 @@ Options:
 -f, --file = (filename.yml, filename.yaml, or filename.json)
 ```
 
-For information, see [Manage an environment using AMPLIFY CLI](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/cli_environments/index.html).
+For information, see [Manage an environment using AMPLIFY CLI](/docs/central/cli_central/cli_environments/).
