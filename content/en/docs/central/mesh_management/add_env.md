@@ -3,9 +3,9 @@ title: Add your environment to AMPLIFY Central
 linkTitle: Add your environment to AMPLIFY Central
 weight: 146
 date: 2020-03-18
-description: Learn how to add your environments to AMPLIFY Central so that you can manage your microservices and any related APIs they expose.
+description: Learn how to add your environments to AMPLIFY Central so that you
+  can manage your microservices and any related APIs they expose.
 ---
-
 {{< alert title="Public beta" color="warning" >}}This feature is currently in **public beta** and not yet available for production use.{{< /alert >}}
 
 ## Before you start
@@ -20,7 +20,7 @@ description: Learn how to add your environments to AMPLIFY Central so that you c
 
 Learn how to add your private cloud hybrid environment to AMPLIFY Central, so that you can manage your microservices, and any related APIs they expose, from AMPLIFY Central in AMPLIFY Central public cloud.
 
-* Add your API Gateway V7 or Kubernetes environment to AMPLIFY Central
+* Add your Kubernetes environment to AMPLIFY Central
 * Download the generated hybrid kit for your Kubernetes environment
 * Generate a key pair and secret for the domain edge gateway and deploy it into the Istio namespace
 * Generate key pairs and secrets for the Axway mesh agents and deploy them into the mesh agent namespace
@@ -37,32 +37,18 @@ Follow these steps to add your environment to AMPLIFY Central:
 
 ![Environments List Page](/Images/central/environments_list_page.png)
 
-### Add your API Gateway V7 environment
-
-To add an API Gateway V7 environment:
-
-1. Click **API Gateway V7** on the **Add a New Environment** page.
-2. Enter your environment details.
-    * The name of your environment must be unique across all namespaces
-    * Longitude and latitude coordinates allow geographical layout of your environment
-    * Tags (key words) make your environment easier to group and find
-    * Attributes (key::value pairs) that are specifically related to your configuration. For example, attribute (key) `Group` and its respective value `Test Environments`.
-3. Click save.
-
-![Add V7 Environment](/Images/central/completed_v7_form.png)
-
-After your V7 environment is created, a dialog box is shown with a successful message and the options to either go to the details page of your newly created environment or go back to the environments list page.
-
-### Add your Kubernetes Environment
+### Add your Kubernetes environment
 
 To add an environment for your private cloud Kubernetes cluster:
 
 1. Click **Kubernetes** on the **Add a New Environment** page.
 2. Enter your environment details.
-    * The name of your runtime is the logical name of the gateway
-    * An environment protocol (HTTP or HTTPS). For HTTPS, you must provide a certificate for the domain.
-    * A service mesh domain name (for example, `mydomain.com`). For HTTPS, you must own or be able to configure a certificate for this domain.
-    * The port where your gateway will be exposed
+
+   * **Name**: Provide a name for your kubernetes service mesh environment.
+   * **Runtime name**: Provide a unique name for the gateway.
+   * **Protocol**: Select the gateway protocol (HTTP or HTTPS) to use for the gateway. For HTTPS, you must provide a certificate for the domain.
+   * **Host**: Provide the publicly available domain name for your kubernetes cluster (for example, `mydomain.com`). For HTTPS, you must own or be able to configure a certificate for this domain.
+   * **Port**: Provide the port number to expose your gateway.
 3. Click save.
 
 {{< alert title="Note" color="" >}} In the **Host** field you must use the same FQDN as in [Generate a key pair and secret for the domain edge gateway](#generate-key-pairs-and-secrets-for-the-axway-mesh-agents) to define your hybrid environment. {{< /alert >}}
@@ -89,13 +75,14 @@ hybridOverride.yaml  istioOverride.yaml
 To expose an HTTPS endpoint of a service within your environment to external traffic, you need a public certificate and private key for the domain where your environment is hosted, and a TLS secret based on the key pair.
 
 1. Create an X.509 certificate and key for your domain (for example, using [Let's Encrypt](https://letsencrypt.org/)).
-    * The domain certificate must match the domain (FQDN) of your environment.
-    * The public key certificate must be PEM encoded and match the given private key.
+
+   * The domain certificate must match the domain (FQDN) of your environment.
+   * The public key certificate must be PEM encoded and match the given private key.
 2. Create the Istio namespace. This is the namespace where Istio will be deployed.
 
     Usage: `kubectl create namespace NAMESPACE_NAME`
 
-    The default value of `NAMESPACE_NAME` is `istio-system` and this value is used later when the helm upgrade deployment steps are executed in [Deploy the service mesh and Axway mesh agents](#deploy-the-service-mesh-and-axway-mesh-agents).
+    The default value of `NAMESPACE_NAME` is `istio-system` and this value is used later when the helm upgrade deployment steps are executed in [Deploy the service mesh and Axway mesh agents] (#deploy-the-service-mesh-and-axway-mesh-agents).
 
     Example:
 
@@ -108,7 +95,7 @@ To expose an HTTPS endpoint of a service within your environment to external tra
 
     Usage: `kubectl create secret tls SECRET_NAME -n NAMESPACE_NAME --key /PATH/TO/KEY/FILE --cert /PATH/TO/CERT/FILE`
 
-    `SECRET_NAME` must match the field `secretName` in the `istioOverride.yaml` Helm chart that you downloaded from AMPLIFY Central as part of the hybrid kit. The `secretName` in the Helm chart is generated from your domain name, for example, `kubernetes-cluster-example-certs` for the domain `kubernetes-cluster.example.com`.
+    `SECRET_NAME` must match the field `secretName` in the `istioOverride.yaml` Helm chart that you downloaded from AMPLIFY Central as part of the hybrid kit. The `secretName` in the Helm chart  is generated from your domain name, for example, `kubernetes-cluster-example-certs` for the domain `kubernetes-cluster.example.com`.
 
     Example:
 
@@ -216,13 +203,13 @@ After you have created the key pairs and secrets, deploy the Axway proprietary s
 
 1. To ensure that you have the latest Axway Helm charts, update your Helm repositories:
 
-    ```
-    helm repo up
-    Hang tight while we grab the latest from your chart repositories...
-    ...Skip local chart repository
-    ...Successfully got an update from the "axway" chart repository
-    Update Complete. ⎈ Happy Helming!⎈
-    ```
+   ```
+   helm repo up
+   Hang tight while we grab the latest from your chart repositories...
+   ...Skip local chart repository
+   ...Successfully got an update from the "axway" chart repository
+   Update Complete. ⎈ Happy Helming!⎈
+   ```
 
 2. Change to the directory where you unzipped the hybrid kit:
 
@@ -237,40 +224,40 @@ After you have created the key pairs and secrets, deploy the Axway proprietary s
     Example 1: Install istio-init
 
     ```
-      helm upgrade --install --namespace istio-system istio axway/istio-init
-      Release "istio-init" does not exist. Installing it now.
-      NAME:   istio-init
-      LAST DEPLOYED: Tue Mar  5 08:44:59 2019
-      NAMESPACE: istio-system
-      STATUS: DEPLOYED
+    helm upgrade --install --namespace istio-system istio axway/istio-init
+    Release "istio-init" does not exist. Installing it now.
+    NAME:   istio-init
+    LAST DEPLOYED: Tue Mar  5 08:44:59 2019
+    NAMESPACE: istio-system
+    STATUS: DEPLOYED
 
-      RESOURCES:
-      ==> v1/ClusterRole
-      NAME                     AGE
-      istio-init-istio-system  0s
+    RESOURCES:
+    ==> v1/ClusterRole
+    NAME                     AGE
+    istio-init-istio-system  0s
 
-      ==> v1/ClusterRoleBinding
-      NAME                                        AGE
-      istio-init-admin-role-binding-istio-system  0s
+    ==> v1/ClusterRoleBinding
+    NAME                                        AGE
+    istio-init-admin-role-binding-istio-system  0s
 
-      ==> v1/ConfigMap
-      NAME          DATA  AGE
-      istio-crd-10  1     0s
-      istio-crd-11  1     0s
+    ==> v1/ConfigMap
+    NAME          DATA  AGE
+    istio-crd-10  1     0s
+    istio-crd-11  1     0s
 
-      ==> v1/Job
-      NAME               COMPLETIONS  DURATION  AGE
-      istio-init-crd-10  0/1          0s        0s
-      istio-init-crd-11  0/1          0s        0s
+    ==> v1/Job
+    NAME               COMPLETIONS  DURATION  AGE
+    istio-init-crd-10  0/1          0s        0s
+    istio-init-crd-11  0/1          0s        0s
 
-      ==> v1/Pod(related)
-      NAME                     READY  STATUS             RESTARTS  AGE
-      istio-init-crd-10-bxrv8  0/1    ContainerCreating  0         0s
-      istio-init-crd-11-d49db  0/1    ContainerCreating  0         0s
+    ==> v1/Pod(related)
+    NAME                     READY  STATUS             RESTARTS  AGE
+    istio-init-crd-10-bxrv8  0/1    ContainerCreating  0         0s
+    istio-init-crd-11-d49db  0/1    ContainerCreating  0         0s
 
-      ==> v1/ServiceAccount
-      NAME                        SECRETS  AGE
-      istio-init-service-account  1        0s
+    ==> v1/ServiceAccount
+    NAME                        SECRETS  AGE
+    istio-init-service-account  1        0s
     ```
 
     Usage: `helm upgrade --install --namespace NAMESPACE_NAME RELEASE CHART -f /PATH/TO/OVERRIDE/VALUES`
@@ -278,12 +265,12 @@ After you have created the key pairs and secrets, deploy the Axway proprietary s
     Example 2: Install istio
 
     ```
-      helm upgrade --install --namespace istio-system istio axway/istio -f ./istioOverride.yaml
-      Release "istio" does not exist. Installing it now.
-      NAME:   istio
-      LAST DEPLOYED: Tue Mar  5 08:44:59 2019
-      NAMESPACE: istio-system
-      STATUS: DEPLOYED
+    helm upgrade --install --namespace istio-system istio axway/istio -f ./istioOverride.yaml
+    Release "istio" does not exist. Installing it now.
+    NAME:   istio
+    LAST DEPLOYED: Tue Mar  5 08:44:59 2019
+    NAMESPACE: istio-system
+    STATUS: DEPLOYED
     ```
 
     This example uses the `istio` Helm chart from the `axway` Helm repository, with override values from the `istioOverride.yaml` Helm chart that you downloaded from AMPLIFY Central as part of the hybrid kit.
@@ -316,8 +303,8 @@ After you have created the key pairs and secrets, deploy the Axway proprietary s
 6. Verify that the mesh agents are deployed in the `apic-control` namespace:
 
     ```
-    kubectl get services -n apic-control
-    ```
+     kubectl get services -n apic-control
+   ```
 
     The output of this command should list the mesh agent services.
 
