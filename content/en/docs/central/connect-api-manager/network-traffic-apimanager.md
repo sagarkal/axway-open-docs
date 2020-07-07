@@ -3,7 +3,9 @@ title: Network traffic - API Manager
 linkTitle: Network traffic - API Manager
 draft: false
 weight: 120
-description: Traffic is always initiated by the Agent to API Manager, API Gateway, and AMPLIFY Central. No sessions are ever initiated back to the Agent.
+description: Traffic is always initiated by the Agent to API Manager, API
+  Gateway, and AMPLIFY Central. No sessions are ever initiated back to the
+  Agent.
 ---
 {{< alert title="Note" color="primary" >}}The Axway API Gateway connectivity to AMPLIFY Central is currently available in an alpha review mode; current functionality and configuration may change before release. Therefore, this connectivity is available for trial use only and is not supported for production API management or connectivity.{{< /alert >}}
 
@@ -12,9 +14,7 @@ description: Traffic is always initiated by the Agent to API Manager, API Gatewa
 The destination for:
 
 * Agent Authentication data is `login.axway.com`
-
 * API definition (Swagger or WSDL) and API documentation data is `apicentral.axway.com`
-
 * API Event data, the transaction summary and headers, is `ingestion-lumberjack.datasearch.axway.com`
 
 ## Communication ports
@@ -25,26 +25,26 @@ Open the following ports so that agents can communicate to the AMPLIFY platform:
 
 **Outbound**:
 
-| Host                                       | Port               | Protocol  | Data                                |
-|--------------------------------------------|--------------------|-----------|-------------------------------------|
-| apicentral.axway.com                       | 443                | HTTPS     | API definitions, Subscription info  |
-| login.axway.com                            | 443                | HTTPS     | Authentication                      |
-| ingestion-lumberjack.datasearch.axway.com  | 453                | TCP       | API event data                      |
+| Host                                      | Port | Protocol | Data                               |
+| ----------------------------------------- | ---- | -------- | ---------------------------------- |
+| apicentral.axway.com                      | 443  | HTTPS    | API definitions, Subscription info |
+| login.axway.com                           | 443  | HTTPS    | Authentication                     |
+| ingestion-lumberjack.datasearch.axway.com | 453  | TCP      | API event data                     |
 
 Other ports which may need to be opened so that the Agent may monitor API Gateway / Manager are:
 
 **Internal**:
 
-| Host                                       | Port               | Protocol  | Data                                |
-|--------------------------------------------|--------------------|-----------|-------------------------------------|
-| API Manager Host                           | 8075 (default)     | HTTPS     | API Discovery                       |
-| API Gateway Host                           | 8090 (default)     | HTTPS     | API Transaction Header data (see [APIGATEWAY GETHEADERS](/docs/central/traceability-agent-variables/))        |
+| Host             | Port           | Protocol | Data                                                                                                   |
+| ---------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------ |
+| API Manager Host | 8075 (default) | HTTPS    | API Discovery                                                                                          |
+| API Gateway Host | 8090 (default) | HTTPS    | API Transaction Header data (see [APIGATEWAY GETHEADERS](/docs/central/traceability-agent-variables/)) |
 
 **Inbound (used for the agent status server)**:
 
-| Host                                       | Port               | Protocol  | Data                                |
-|--------------------------------------------|--------------------|-----------|-------------------------------------|
-| Agent Host(s)                              | 8989 (default)     | HTTPS     | Serves the status of the agent and its dependencies for monitoring  |
+| Host          | Port           | Protocol | Data                                                               |
+| ------------- | -------------- | -------- | ------------------------------------------------------------------ |
+| Agent Host(s) | 8989 (default) | HTTPS    | Serves the status of the agent and its dependencies for monitoring |
 
 ## Using proxies
 
@@ -61,3 +61,83 @@ Use a SOCKS5 Proxy for communication to the AMPLIFY Platform when sending API Tr
 ### Proxy authentication
 
 Both proxy types will use one of two authentication mechanisms, none or username/password authentication. The username authentication is specified within the URL `http://{user}:{pass}@{proxy}:{port}`.
+
+## Validation
+
+### Direct Connection
+
+**Connecting to AMPLIFY Central and Login hosts:**
+
+```shell
+curl -s -o /dev/null -w "%{http_code}"  https://apicentral.axway.com
+```
+
+```shell
+curl -s -o /dev/null -w "%{http_code}"  https://login.axway.com
+```
+
+A return of **"200"** validates the connection was established.
+
+**Connecting to AMPLIFY Central Event Traffic host:**
+
+```shell
+curl ingestion-lumberjack.datasearch.axway.com:453
+```
+
+A return of **"curl: (52) Empty reply from server"** validates the connection was established.
+
+### Connection via Proxy
+
+**Connecting to AMPLIFY Central and Login hosts:**
+
+```shell
+curl -x {{proxy_host}}:{{proxy_port}} -s -o /dev/null -w "%{http_code}"  https://apicentral.axway.com
+```
+
+```shell
+curl -x {{proxy_host}}:{{proxy_port}} -s -o /dev/null -w "%{http_code}"  https://login.axway.com
+```
+
+A return of **"200"** validates the connection was established.
+
+**Connecting to AMPLIFY Central Event Traffic host:**
+
+```shell
+curl -x socks5://{{proxy_host}}:{{proxy_port}} ingestion-lumberjack.datasearch.axway.com:453
+```
+
+A return of **"curl: (52) Empty reply from server"** validates the connection was established.
+
+## Troubleshooting
+
+### Curl connection to ingestion-lumberjack.datasearch.axway.com
+
+* **Error:**
+
+  ```shell
+  curl: (6) Could not resolve host: ingestion-lumberjack.datasearch.axway.com
+  ```
+
+    * **Cause:** The host making the call can’t resolve the ingestion-lumberjack DNS name.
+
+    * **Possible Resolution:** Tell curl to resolve the hostname on the proxy:
+
+      ```shell
+      curl -x socks5h://{{proxy_host}}:{{proxy_port}} ingestion-lumberjack.datasearch.axway.com
+      ```
+
+* **Error:**
+
+  ```shell
+  curl: (7) No authentication method was acceptable.
+  ```
+
+    * **Cause:** The SOCKS proxy server expected an authentication type other than what was specified.
+
+    * **Possible Resolution:** Provide authentication to the proxy:
+
+      ```shell
+      socks5://{{username}}:{{password}}@{{proxy_host}}:{{proxy_port}}
+      ```
+
+      The Agents only support the use of username/password authentication method for SOCKS connections.
