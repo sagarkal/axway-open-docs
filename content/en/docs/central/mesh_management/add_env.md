@@ -37,7 +37,23 @@ Follow these steps to add your environment to AMPLIFY Central:
 
 ![Environments List Page](/Images/central/environments_list_page.png)
 
-### Add your Kubernetes environment
+### Add your API Gateway V7 environment
+
+To add an API Gateway V7 environment:
+
+1. Click **API Gateway V7** on the **Add a New Environment** page.
+2. Enter your environment details.
+    * **Name**: The name of your environment must be unique across all namespaces.
+    * **Location**: Longitude and latitude coordinates allow geographical layout of your environment.
+    * **Tags**: These are keywords that make your environment easier to group and find.
+    * **Attributes**: Key-value pair that are specifically related to your configuration. For example, attribute (key) `Group` and its respective value `Test Environments`.
+3. Click save.
+
+![Add V7 Environment](/Images/central/completed_v7_form.png)
+
+After your V7 environment is created, a dialog box is shown with a successful message and the options to either go to the details page of your newly created environment or go back to the environments list page. To register APIs and observe traffic from this environment, install the [Discovery and the Traceability Agents](/docs/central/connect-api-manager/) in this environment.
+
+### Add your Kubernetes Environment
 
 To add an environment for your private cloud Kubernetes cluster:
 

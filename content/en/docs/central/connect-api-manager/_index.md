@@ -7,7 +7,7 @@ weight: 130
 description: >
   Understand why you would connect Axway API Manager to AMPLIFY Central. Learn
   how you can publish to the AMPLIFY Catalog from your API Management System in
-  order to obtain a global view of your APIS and present this Catalog to your
+  order to obtain a global view of your APIs and present this Catalog to your
   consumers.
 
   Learn how you can collect the traffic of all your gateways and see it in a single place in AMPLIFY Central Observability.
@@ -48,21 +48,29 @@ The Traceability Agent sends log information about APIs that have been discovere
 
 ## Connect Axway API Manager to AMPLIFY Central quickstart
 
-1. Generate a key pair.
+The following gives you a high-level overview of the required steps to connect a API-Manager V7 environment to AMPLIFY-Central.
 
-   * Create a new Service Account user in AMPLIFY Central using the key pair. See [Manage an API proxy using AMPLIFY CLI](/docs/central/cli_getstarted/).
-2. Configure an environment in [AMPLIFY Central using the CLI](/docs/central/cli_environments/) or [Add your environment to AMPLIFY Central using the UI](/docs/central/mesh_management/add_env/#add-your-environment-to-amplify-central).
-3. [Prepare the Discovery Agent](/docs/central/connect-api-manager/deploy-your-agents/#discovery-agent).
+### Create a new Service Account
 
-   1. Move key files to a keys directory.
-   2. Download the latest binary of the Discovery Agent.
-   3. Customize the configuration file *
-   4. Start the Discovery Agent.
-4. [Prepare the Traceability Agent](/docs/central/connect-api-manager/deploy-your-agents/#traceability-agent).
+* The agent will use this service account for the secure communication with the AMPLIFY platform
+* Learn more how to install the CLI and create a service account. See [Install AMPLIFY Central CLI](/docs/central/cli_central/cli_install).
 
-   1. Move key files to a keys directory.
-   2. Download the latest binary of the Traceability Agent.
-   3. Customize the configuration file *
-   4. Start the Traceability Agent.
+### Add your environment to Central
+
+* Add your environment to AMPLIFY Central using either the [AMPLIFY Central CLI](/docs/central/cli_central/cli_environments/) or [the UI](/docs/central/mesh_management/add_env/#add-your-environment-to-amplify-central).
+
+### Install and prepare the Discovery Agent
+
+* The agent will be installed in the actual runtime environment and is using the service account for the communication with the platform
+* Learn more how install and setup the [Discovery Agent](/docs/central/connect-api-manager/deploy-your-agents/#discovery-agent)*
+
+### Install and prepare the Traceability Agent
+
+* Quite similar to the discovery agent, also the Traceability Agent needs to be installed and configured in your environment
+* Learn more how install and setup the [Traceability Agent](/docs/central/connect-api-manager/deploy-your-agents/#traceability-agent)*
 
 \* If you need assistance setting up the configuration files, please contact your Sales Account Manager, or open a support ticket on support.axway.com.
+
+The following demonstrates how to connect an Axway API-Gateway V7 to AMPLIFY-Central.
+
+{{< youtube kugRyYVw5nI >}}

@@ -59,21 +59,28 @@ An AMPLIFY Central Service Account. See [Manage an API proxy using AMPLIFY CLI](
 
 ## Connect AWS API Gateway to AMPLIFY Central quickstart
 
-1. Set up AMPLIFY Central:
+### 1. Set up AMPLIFY Central
 
-   1. Set up a Service Account.
-   2. Create an environment object in AMPLIFY Central using either the UI, API or CLI.  
-2. Set up AWS CloudFormation using the two templates at [https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/](<https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/>):
+* Set up a [Service Account](/docs/central/connect-aws-gateway/prepare-amplify-central-1/#create-a-service-account).
+* Create an [environment](/docs/central/connect-aws-gateway/prepare-amplify-central-1/#create-an-environment) object in AMPLIFY Central using either the UI, API or CLI.  
 
-   1. apigw_iam_setup
-   2. apigw_cloudformation
-3. Create a Discovery Agent environment file:
+### 2. Set up using AWS CloudFormation
 
-   1. Move key files to a keys directory.
-   2. Log into the Artifactory Repository and pull the latest image of the Discovery Agent.
-   3. Start the Discovery Agent.
-4. Create a Traceability Agent environment file:
+* Set up using the resources using [AWS CloudFormation](/docs/central/connect-aws-gateway/prepare-aws-api-gateway/#set-up-the-cloudformation)
+* Get the required templates at [https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/](<https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/>)
+    * IAM configuration (apigw_iam_setup.yaml)
+    * Discovery and Traceability resource configuration (apigw_cloudformation.yaml)  
 
-   1. Move key files to a keys directory.
-   2. Log into the Artifactory Repository and pull the latest image of the Traceability Agent.
-   3. Start the Traceability Agent.
+### 3. Create a Discovery Agent environment file
+
+* Learn more about the [Discovery Agent](/docs/central/connect-aws-gateway/deploy-your-agents-1/#discovery-agent)
+    * Create the Discovery Agent configuration file
+    * Pull the latest Docker image of the Discovery Agent
+    * Start the Discovery Agent  
+
+### 4. Create a Traceability Agent environment file
+
+* Learn more about the [Traceability Agent](/docs/central/connect-aws-gateway/deploy-your-agents-1/#traceability-agent)
+    * Create the Traceability Agent configuration file
+    * Log into the Artifactory Repository and pull the latest image of the Traceability Agent.
+    * Start the Traceability Agent.
