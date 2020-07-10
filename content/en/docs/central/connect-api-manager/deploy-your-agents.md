@@ -12,9 +12,9 @@ description: Learn how to deploy your Discovery Agent and Traceability Agent so
 ## Before you start
 
 * Read [AMPLIFY Central and Axway API Manager connected overview](/docs/central/connect-api-manager/)
-* Be sure you have [Prepared AMPLIFY Central]
-(/docs/central/connect-api-manager/prepare-amplify-central/index.html)
-* You will need a basic knowledge of Axway API Management solution
+* Be sure you have [Prepared AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/index.html)
+* You will need a basic knowledge of Axway API Management solution:
+
     * where the solution is running (host / port / path to the logs / users)
     * how to create / publish and API
     * how to call an API
@@ -53,9 +53,9 @@ curl -L "https://axway.bintray.com/generic-repo/v7-agents/v7_discovery_agent/lat
 
 **Step 2**: Unzip the file discovery_agent-latest.zip to get the agent binary (discovery_agent) and a template configuration file (discovery_agent.yml).
 
-   ```
-   unzip discovery_agent-latest.zip
-   ```
+```
+unzip discovery_agent-latest.zip
+```
 
 **Step 3**: Copy those 2 files into a folder (/home/APIC-agents for instance) on the machine where the API Manager environment is located.
 
@@ -112,6 +112,8 @@ This section connects the agent to AMPLIFY Central and determines how to publish
 
 `url`: The AMPLIFY Central url. Default value is **<https://apicentral.axway.com>**
 
+`platformURL:` The AMPLIFY platform url. Needed for finding the user email during the subscription process with email notification. Default value is **<https://platform.axway.com>**
+
 `teamID`: The Team identifier in AMPLIFY Central that all APIs will be linked. Locate this at AMPLIFY Central > Access > Team Assets. Open the teams details. The team identifier is the last part of the url (AMPLIFY URL/access/teams/detail/**e4ec6c1a69fd0b8e016a0bb0681e0e8f**).
 
 `tenantID`: The Organization ID from AMPLIFY Central. Locate this at Platform > User > Organization > Org ID field.
@@ -143,6 +145,7 @@ Once all data is gathered, this section should look like:
 ```
 central:
   url: https://apicentral.axway.com
+  platformURL: https://platform.axway.com
   teamID: e4ec6c1a69fd0b8e016a0bb0681e0e8f
   tenantID: 68794y2
   environment: my-v7-env
@@ -200,6 +203,7 @@ apimanager:
 
 central:
   url: https://apicentral.axway.com
+  platformURL: https://platform.axway.com
   teamID: e4ec6c1a69fd0b8e016a0bb0681e0e8f
   tenantID: 68794y2
   environment: my-v7-env
@@ -278,7 +282,6 @@ The agent can run in the following modes:
     * Default: located in the same directory as the agent binary.
     * Optional: use a dedicated folder where the configuration file is located (use the --path.config flag in the agent command line to access the file path).
     * Advanced configuration: properties inside the configuration file can reference environment variables. This enables you to set up only one configuration file that addresses different behaviors (depending on the environment variables). See [Discovery Agent variables](/docs/central/connect-api-manager/discovery-agent-variables/).
-
 * With command line argument. See [Traceability Agent flags](/docs/central/connect-api-manager/traceability-agent-flags/).
 
 ### Installing the Traceability Agent
@@ -291,9 +294,9 @@ curl -L "https://axway.bintray.com/generic-repo/v7-agents/v7_traceability_agent/
 
 **step 2**: Unzip the file traceability_agent-latest.zip to get the agent binary (traceability_agent) and a template configuration file (traceability_agent.yml).
 
-   ```
-   unzip traceability_agent-latest.zip
-   ```
+```
+unzip traceability_agent-latest.zip
+```
 
 **step 3**: Copy those 2 files into a folder (/home/APIC-agents for instance) on the machine where the API Manager environment is located.
 
