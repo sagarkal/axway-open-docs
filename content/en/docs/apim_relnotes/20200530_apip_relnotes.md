@@ -41,9 +41,11 @@ Check out the demo video available at [How to show APIs from AMPLIFY Unified Cat
 
 We have added the ability to encrypt the database password that is stored in a configuration file. You can choose to encrypt the password during the installation, or any time later.
 
-For more information, see [Encrypt database password](https://axway-open-docs.netlify.app/docs/apim_installation/apiportal_install/secure_harden_portal/#encrypt-database-password).
+For more information, see [Encrypt database password](https://axway-open-docs.netlify.app/docs/apim_installation/apiportal_install/secure_harden_portal/#encrypt-database-password) or check out the demo video [How to encrypt the database password](https://www.youtube.com/watch?v=ID_qi4huAVw&list=PLSlCpG9zsECpo8-JMZ2Cx4REDyUvpwy9v).
 
-Check out the demo video available at [How to encrypt the database password](https://www.youtube.com/watch?v=ID_qi4huAVw&list=PLSlCpG9zsECpo8-JMZ2Cx4REDyUvpwy9v).
+{{% alert title="Note" %}}
+If you are updating API Portal to 7.7 May 2020 release, you must first apply the [Update Patch1](https://support.axway.com/en/downloads/download-details/id/1444971) before enabling the database password encryption feature as described in the documentation.
+{{% /alert %}}
 
 ### Other enhancements
 
