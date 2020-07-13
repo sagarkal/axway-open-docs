@@ -1,7 +1,7 @@
 {
     "title": "Manage access to APIs",
     "linkTitle": "Manage access to APIs",
-    "weight": "7",
+    "weight": "70",
     "date": "2019-09-17",
     "description": "Manage quotas, OAuth authorizations, organizations, and users in API Manager."
 }

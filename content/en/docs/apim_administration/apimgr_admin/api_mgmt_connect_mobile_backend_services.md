@@ -1,7 +1,7 @@
 {
     "title": "Connect to Axway Mobile Backend Services",
     "linkTitle": "Connect to Axway Mobile Backend Services",
-    "weight": "15",
+    "weight": "150",
     "date": "2019-09-17",
     "description": "Connect to Axway Mobile Backend Services from API Manager."
 }

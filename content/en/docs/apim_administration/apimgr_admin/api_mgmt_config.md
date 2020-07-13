@@ -1,7 +1,7 @@
 {
     "title": "Set up API Manager",
     "linkTitle": "Set up API Manager",
-    "weight": "1",
+    "weight": "10",
     "date": "2019-09-17",
     "description": "Learn how to enable API Manager after installation, and how to configure it with signed certificates, monitoring,  and HTTP proxy servers."
 }

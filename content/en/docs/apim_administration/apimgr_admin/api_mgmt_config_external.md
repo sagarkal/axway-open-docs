@@ -1,7 +1,7 @@
 {
     "title": "Configure external LDAP identity providers",
     "linkTitle": "Configure external LDAP identity providers",
-    "weight": "16",
+    "weight": "160",
     "date": "2019-09-17",
     "description": "Configure policy-based integration with external identity providers using Lightweight Directory Access Protocol (LDAP)."
 }

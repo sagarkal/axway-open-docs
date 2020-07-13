@@ -1,7 +1,7 @@
 {
     "title": "Configure API Manager settings in Policy Studio",
     "linkTitle": "Configure settings in Policy Studio",
-    "weight": "2",
+    "weight": "20",
     "date": "2019-09-17",
     "description": "Configure settings that apply to API Manager and the underlying API Gateway in Policy Studio."
 }

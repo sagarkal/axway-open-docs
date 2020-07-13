@@ -1,7 +1,7 @@
 {
 "title": "Customize API Manager",
   "linkTitle": "Customize API Manager",
-  "weight": "13",
+  "weight": "130",
   "date": "2019-09-17",
   "description": "Customize API Manager features, such as generated emails and password validation, and customize API Manager data using custom properties."
 }

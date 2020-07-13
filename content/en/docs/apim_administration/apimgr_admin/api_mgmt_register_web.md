@@ -1,7 +1,7 @@
 {
     "title": "Register REST APIs in API Manager",
     "linkTitle": "Register REST APIs",
-    "weight": "5",
+    "weight": "50",
     "date": "2019-09-17",
     "description": "Create or import a back-end REST API in API Manager."
 }

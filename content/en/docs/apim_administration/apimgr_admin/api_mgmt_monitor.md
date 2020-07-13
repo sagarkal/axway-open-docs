@@ -1,7 +1,7 @@
 {
     "title": "Monitor APIs and applications in API Manager",
     "linkTitle": "Monitor APIs and applications",
-    "weight": "8",
+    "weight": "80",
     "date": "2019-09-17",
     "description": "View metrics on all invoked APIs and client applications in the system."
 }

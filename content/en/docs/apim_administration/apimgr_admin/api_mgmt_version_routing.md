@@ -1,7 +1,7 @@
 {
     "title": "Configure API routing based on version query string",
     "linkTitle": "Configure API routing based on version query string",
-    "weight": "10",
+    "weight": "100",
     "date": "2019-09-17",
     "description": "Host different API versions on a single base path in API Manager and distinguish between them using a query string parameter."
 }

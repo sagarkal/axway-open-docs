@@ -1,7 +1,7 @@
 {
     "title": "Configure cloud application connectors",
     "linkTitle": "Configure cloud application connectors",
-    "weight": "14",
+    "weight": "140",
     "date": "2019-09-17",
     "description": "Connect to and manage cloud-based applications in API Manager."
 }

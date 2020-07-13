@@ -1,7 +1,7 @@
 {
     "title": "Get started with API Manager",
     "linkTitle": "Get started",
-    "weight": "4",
+    "weight": "40",
     "date": "2019-09-17",
     "description": "Quick summary of the steps required to register and virtualize an API in API Manager."
 }

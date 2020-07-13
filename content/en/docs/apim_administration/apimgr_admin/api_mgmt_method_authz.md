@@ -1,7 +1,7 @@
 {
     "title": "Configure API method-level authorization for client applications",
     "linkTitle": "Configure API method-level authorization for client applications",
-    "weight": "11",
+    "weight": "110",
     "date": "2019-09-17",
     "description": "Control which applications have access to which API methods using API method-level authorization in API Manager."
 }

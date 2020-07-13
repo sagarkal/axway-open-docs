@@ -1,7 +1,7 @@
 {
     "title": "Promote managed APIs between environments",
     "linkTitle": "Promote managed APIs between environments",
-    "weight": "12",
+    "weight": "120",
     "date": "2019-09-17",
     "description": "Different approaches you can use to promote APIs between environments."
 }

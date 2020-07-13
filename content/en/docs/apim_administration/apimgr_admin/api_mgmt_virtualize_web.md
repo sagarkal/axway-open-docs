@@ -1,11 +1,10 @@
 {
-    "title": "Virtualize REST APIs in API Manager",
-    "linkTitle": "Virtualize REST APIs",
-    "weight": "6",
-    "date": "2019-09-17",
-    "description": "Virtualize a registered back-end API as a publicly exposed front-end API."
+"title": "Virtualize REST APIs in API Manager",
+"linkTitle": "Virtualize REST APIs",
+"weight": "60",
+"date": "2019-09-17",
+"description": "Virtualize a registered back-end API as a publicly exposed front-end API."
 }
-
 When you have registered a back-end REST API, you can then virtualize it as a publicly exposed front-end API. The **API Catalog**
 stores information about the REST APIs that have been virtualized as front-end APIs. Virtualized REST APIs published in the **API Catalog** can be made available in API Manager for consumption by API consumers, and for administration by API administrators.
 
@@ -50,9 +49,10 @@ To import a previously exported API, perform the following steps:
 1. Click the **API Registration > Frontend API** view in API Manager.
 2. Click **New API > Import API collection**.
 3. In the **Import from** dialog, complete the following:
-    * **File**: Click to browse to the previously exported API (`.dat` file).
-    * **Password**: Enter the password if required.
-    * **Organization**: Select the organization from the list (for example, **API Development**).
+
+   * **File**: Click to browse to the previously exported API (`.dat` file).
+   * **Password**: Enter the password if required.
+   * **Organization**: Select the organization from the list (for example, **API Development**).
 4. Click **Import**.
 5. Press **F5** to reload the API Manager web console.
 
@@ -201,7 +201,9 @@ Configure the following to enable OAuth authorization for access tokens issued b
 * `oauth.token.scopes`
 * `oauth.token.valid`
 
-For authorization, grant type implicit, and grant type authorization code settings, see the OAuth security device settings.
+For authorization, grant type implicit, and grant type authorization code settings, see the [OAuth security device settings](#oauth).
+
+For a complete example, see [Configure OAuth (External) security for a front-end API](/docs/apim_administration/apimgr_admin/example_oauth_external/).
 
 #### Pass Through
 
@@ -389,6 +391,8 @@ You can configure the following in **DOCUMENTATION** > **Description**:
 * **Use markdown file location**: Enter the location in **Markdown file location** (for example, `${environment.VINSTDIR}/../markdown/API/API.md`).
 * **Use external URL**: Enter the location in **External URL location** (for example, `https://api.any.org/doc#myapi`).
 
+The description is using the [Markdown](http://daringfireball.net/projects/markdown/) syntax.
+
 ### Configure API tags
 
 The **TAGS** section enables you to add tags to categorize and help find your API in the **API Catalog**. Click the add button, and enter a tag name (for example, `Department`) and values (for example, `Engineering,Testing`). You can add multiple tags for your API. You can enter multiple tag values in a comma-separated list without any spaces between each value.
@@ -431,7 +435,6 @@ You can use the **CORS Profiles** tab to create profiles for Cross Origin Resour
 * **EXPOSED HEADERS**: Click the add button, and enter the list of HTTP headers to be exposed to the client in response to an invocation of this API.
 
     This does not include simple headers such as `Cache-Control`, `Content-Language`, `Content-Type`, `Expires`, `Last-Modified`, and `Pragma`.
-
 * **CREDENTIALS SUPPORT**: Select whether the API advertises that it supports user credentials. When selected, the `Access-Control-Allow-Credentials` CORS header is sent in the response, with a value of `true`. This setting is not selected by default.
 * **PREFLIGHT RESULT CACHE**: Enter how long the results of a CORS preflight `OPTIONS` request can be stored in the client preflight result cache. When configured, the `Access-Control-Max-Age` CORS header is sent in the response.
 
@@ -442,10 +445,11 @@ For more details on using CORS, see the [API Gateway Policy Developer Guide](/do
 You can use the **Trusted Certificates** tab to add X.509 certificates, which can be used for the **Outbound** and **Inbound** SSL settings. To add a new certificate, perform the following steps:
 
 1. Click the add button on the left, and configure the following:
-    * **Source**: Select the source of the certificate (**X.509 Certificate** file or **URL**).
-    * **File** or **URL**: Browse to the certificate source file (PKCS12, PEM, DER file), and enter a password if required. Alternatively, enter the URL for the certificate.
-    * **Use for outbound**: Select whether is certificate is used for outbound security between the API Gateway and the back-end API. This is selected by default.
-    * **Use for inbound**: Select whether is certificate is used for inbound security between the client and the API Gateway. This is not selected by default.
+
+   * **Source**: Select the source of the certificate (**X.509 Certificate** file or **URL**).
+   * **File** or **URL**: Browse to the certificate source file (PKCS12, PEM, DER file), and enter a password if required. Alternatively, enter the URL for the certificate.
+   * **Use for outbound**: Select whether is certificate is used for outbound security between the API Gateway and the back-end API. This is selected by default.
+   * **Use for inbound**: Select whether is certificate is used for inbound security between the client and the API Gateway. This is not selected by default.
 2. If you selected a **URL** certificate source, enter your **User name** and **Password** if required.
 3. Click **Import**.
 
@@ -462,6 +466,7 @@ When you have registered the back-end REST API, you can select it in the list of
 * **Upgrade access to newer API**: Upgrades all organizations and applications that had access to the original API to a more recent version of the API (if one exists). You can also deprecate and retire the original API as options.
 * **Grant Access**: Grants organizations access to the selected APIs. You can select whether to **Grant API access to** all organizations, specific organizations, or organizations with access to specific APIs.
 * **Export API collection**: Exports a copy of the selected front-end REST APIs to your chosen directory. The APIs are exported in JSON format in a `.dat` file, which combines the front-end API, back-end API, security profiles, and so on. You must specify the following in the dialog:
+
     * **Export file name**: Specify a file name to export (defaults to `api-export.dat`)
     * **Password**: Add a mandatory password for encryption
 
