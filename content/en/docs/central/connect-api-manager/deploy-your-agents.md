@@ -403,7 +403,7 @@ This section connects the agent to AMPLIFY Central and determine how to publishe
 
 `auth.timeout`: Timeout for the authentication. Default value is **10s**
 
-`proxy_url`: The URL for the proxy for Amplify Central **<http://username:password@hostname:port>**. If empty, no proxy is defined.
+`proxy_url`: The URL for the proxy for Amplify Central `<http://username:password@hostname:port>`. If empty, no proxy is defined.
 
 `ssl` settings: By default, for connecting to AMPLIFY Central, agent uses TLS 1.2 with a predefined list of cipher suites. Refer to [SSL / TLS advanced](/docs/central/connect-api-manager/ssl-tls-advanced/) section for changing this behavior.
 
