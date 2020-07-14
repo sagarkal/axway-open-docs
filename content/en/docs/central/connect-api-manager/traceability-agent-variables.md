@@ -4,7 +4,8 @@ linkTitle: Traceability Agent variables
 draft: false
 weight: 60
 description: Use the following environment variables to create your Traceability
-  Agent env_vars file. For additional information, see [Deploy your agents] (/docs/central/connect-api-manager/deploy-your-agents/).
+  Agent env_vars file. For additional information, see [Deploy your agents]
+  (/docs/central/connect-api-manager/deploy-your-agents/).
 ---
 
 | Variable name                     | Description                                                                                                                                                                                                                                                                 |   |
@@ -37,7 +38,7 @@ description: Use the following environment variables to create your Traceability
 | APIMANAGER_SSL_NEXTPROTOS         | An array of strings. It is a list of supported application level protocols, in order of preference, based on the ALPN protocol list. Allowed values are: h2, http/1.0, http/1.1, h2c.                                                                                       |   |
 | APIMANAGER_SSL_INSECURESKIPVERIFY | Controls whether a client verifies the server’s certificate chain and host name. If true, TLS accepts any certificate presented by the server and any host name in that certificate. In this mode, TLS is susceptible to man-in-the-middle attacks.                         |   |
 | Amplify Central variables         |                                                                                                                                                                                                                                                                             |   |
-| STATUS_PORT                         | Checks the health status of the running agent.                                                                                                                                                                                                                                                |   |
+| STATUS_PORT                      | Port used for checking the health status of the running agent.                                                                                                                                                                                                                                                                        |     |
 | LOG_LEVEL                         | The log level for the agent.                                                                                                                                                                                                                                                |   |
 | LOGSTASH_URL                      | The URL of the logstash to forward the transaction log entries.                                                                                                                                                                                                             |   |
 | LOGSTASH_PROXYURL                 | The URL for the proxy for logstash (socks5://hostname:port). If empty, no proxy is defined.                                                                                                                                                                                 |   |
