@@ -39,8 +39,8 @@ To generate the SSL-RSA certificates and enable SSL in the MySQL or MariaDB serv
 
 You must first create the database server and the client certificate and key files. During the process, you must respond to several prompts from the Open SSL commands:
 
-* To generate test files, press Enter to all prompts.
-* To generate files for production use, provide actual (non-empty) responses.
+* To generate test files, press `Enter` to all prompts except the one for Common Name (CN) of the Certificate Authority (CA). The CN must match the hostname of the machine.
+* To generate files for production use, you must provide (non-empty) responses.
 
 You must enter different domain names for the CA and the client-server certificate.
 
