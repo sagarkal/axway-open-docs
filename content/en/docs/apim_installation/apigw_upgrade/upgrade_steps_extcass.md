@@ -1,11 +1,11 @@
 {
 "title": "Upgrade from API Gateway 7.5.x or 7.6.x",
-  "linkTitle": "Upgrade from API Gateway 7.5.x or 7.6.x",
-  "weight": 2,
-  "date": "2019-10-07",
-  "description": "Upgrade from API Gateway 7.5.1 or later to API Gateway 7.7."
+"linkTitle": "Upgrade from API Gateway 7.5.x or 7.6.x",
+"weight": 2,
+"date": "2019-10-07",
+"description": "Upgrade from API Gateway 7.5.1 or later to API Gateway 7.7."
 }
-In API Gateway 7.5.1 and later versions, the Apache Cassandra database is fully separated from the API Gateway (in earlier versions it was embedded with the API Gateway). This simplifies the upgrade process when upgrading from API Gateway 7.5.1 or later, as the data contained in Apache Cassandra does not need to be exported and imported along with the other configuration data.
+In API Gateway 7.5.1 and later versions, the Apache Cassandra database is fully separated from the API Gateway. This means that the data contained in Apache Cassandra does not need to be exported and imported along with the other configuration data when upgrading.
 
 In an upgrade from API Gateway 7.5.1 and later versions:
 
@@ -17,7 +17,21 @@ In an upgrade from API Gateway 7.5.1 and later versions:
 * During an upgrade, including zero downtime upgrade (ZDU), quotas are reset, meaning that your quotas might be too lenient for a period after the upgrade.
 * During a ZDU the old quota count and new quota count are in use at the same time.
 * Quota could be reduced during ZDU to protect individual instances from being overloaded.
-  {{< /alert >}}
+
+{{< /alert >}}
+
+## Overview of upgrade steps
+
+{{< alert title="Note" color="primary" >}}Read through this documentation in its entirety before beginning the upgrade process to anticipate each of the steps involved.{{< /alert >}}  
+
+An upgrade generally involves performing the following steps:
+
+1. Install API Gateway 7.7 in a new directory.
+2. Apply the latest available update for the new API Gateway 7.7.
+3. Export the data from the old installation before stopping the API Gateway.
+4. Validate and upgrade the data, resolving any issues identified by the upgrade process before you proceed to the next step.
+5. Stop the old API Gateway and apply the upgraded data to the new API Gateway 7.7 installation.
+6. Verify that the upgrade completed successfully.
 
 ## Before you upgrade
 
@@ -29,20 +43,22 @@ This section provides a checklist of the tasks that you must perform on your old
 
 Perform the following in your old API Gateway installation.
 
-#### Back up the old API Gateway installation
+#### Task 1 - Back up the old API Gateway installation
 
 Back up the old API Gateway installation on each node. At a minimum:
 
 * Back up the `apigateway` directory.
 * Back up any databases used by API Gateway. This includes external databases used for OAuth or KPS, and your metrics database if this has been configured (for example, for monitoring in API Gateway Analytics or API Manager).
 
-#### Check that old API Gateway groups are consistent
+{{< alert title="Note" color="primary" >}}You do not need to stop any processes to back up the `apigateway` directory.{{< /alert >}}
+
+#### Task 2 - Check that old API Gateway groups are consistent
 
 Before you upgrade, ensure that all API Gateway groups in the old installation are consistent, meaning that all API Gateways in a group have the same configuration deployed. Upgrade is not supported for inconsistent groups.
 
-You can use Policy Studio or API Gateway Manager to deploy configuration to API Gateway groups.
+To check if groups are consistent, create a new group that has more than one API Gateway. You can use Policy Studio or API Gateway Manager to deploy configurations to API Gateway groups. Deploy a new configuration to just one of the API Gateways in the new group and check if the change is consistent with the other API Gateways.
 
-#### Do not update the old API Gateway installation
+#### Task 3 - Do not change the old API Gateway installation
 
 Do not make any changes to the old API Gateway installation after the upgrade process has begun. For example, if you have run any `sysupgrade` commands, do not perform any of the following on the old installation:
 
@@ -53,20 +69,20 @@ Do not make any changes to the old API Gateway installation after the upgrade pr
 
 See also [What happens if you change the old API Gateway installation after running export?](/docs/apim_installation/apigw_upgrade/upgrade_faq/#what-happens-if-you-change-the-old-api-gateway-installation-after-running-export)
 
-#### Check that ext/lib customizations in the old installation are compatible
+#### Task 4 - Check that ext/lib customizations in the old installation are compatible
 
 If you have customizations (for example, third-party JAR files) in the `ext/lib`
 directory of your old API Gateway installation, the `sysupgrade` command copies any third-party JARs to the new installation. However, you must verify that all third-party JARs are compatible with API Gateway 7.7.
 
 Before you upgrade, you should confirm that any third-party JARs are not already present in the new installation under directory `apigateway/system/lib`. You should also test any custom JARs to ensure that they work correctly in API Gateway 7.7.
 
-#### Upgrade API Gateway Analytics version 7.4.0 or later
+#### Task 5 - Upgrade API Gateway Analytics version 7.4.0 or later
 
 If you are using API Gateway Analytics version 7.4.0 or later, you can upgrade API Gateway Analytics before you run the `sysupgrade` command. For more information, see [Upgrade API Gateway Analytics](/docs/apim_installation/apigw_upgrade/upgrade_analytics/).
 
 If you are using a metrics database with API Manager and not API Gateway Analytics, see [Upgrade your metrics database for API Manager](/docs/apim_installation/apigw_upgrade/upgrade_metrics/).
 
-#### Identify components and configuration requiring manual upgrade steps
+#### Task 6 - Identify components and configuration requiring manual upgrade steps
 
 Not all components and configuration from earlier API Gateway versions can be upgraded automatically with the `sysupgrade` command. However, you can upgrade these items manually.
 
@@ -82,15 +98,17 @@ Check your old installation and identify if you are using any of the following:
 
 Perform the following in your new API Gateway 7.7 installation.
 
-#### Apply the latest service pack
+#### Task 1 - Apply the latest update
 
-Apply the latest available service pack for your new installation. Service packs are available from [Axway Support](https://support.axway.com/).
+Apply the latest available update for your new installation. To see the system property changes made between the old installation and the latest update, see [system property changes](/docs/apim_installation/apigw_upgrade/upgrade_system_props/). Updates are available from [Axway Support](https://support.axway.com/).
 
-#### Do not start any Node Managers or API Gateways in the new installation
+{{< alert title="Tip" color="primary" >}}Ensure that your new 7.7 installation is on the latest update to reduce any possible issues.{{< /alert >}}
+
+#### Task 2 - Do not start any Node Managers or API Gateways in the new installation
 
 Do not create or start any Node Managers, groups, or API Gateways in the new installation. These are started automatically by the `sysupgrade` process.
 
-#### Open the new Apache Cassandra client port in the firewall
+#### Task 3 - Open the new Apache Cassandra client port in the firewall
 
 API Gateway version 7.7 includes the Datastax Cassandra client, which uses a default port of 9042 to communicate with Cassandra over the native protocol. Earlier API Gateway versions included the Hector Cassandra client, which used a default port of 9160 to communicate with Cassandra over the Apache Thrift protocol.
 
@@ -98,7 +116,7 @@ When upgrading from 7.5.1 or later to API Gateway 7.7 all Cassandra hosts are up
 
 Alternatively, to continue to use the same port as you used in your old installation, you can perform some manual steps after the upgrade completes. For more information, see [Configure a different Apache Cassandra client port](#configure-a-different-apache-cassandra-client-port).
 
-#### Move third-party JDBC JARs to the new installation
+#### Task 4 - Move third-party JDBC JARs to the new installation
 
 If your old API Gateway installation uses external third-party databases for OAuth and KPS, you must copy the JDBC JAR files to the following location in your new 7.7 installation:
 
@@ -110,7 +128,7 @@ For example, if your new installation is at `/opt/Axway/7.7`, copy the JDBC driv
 
 This enables the `sysupgrade apply` step to upgrade the databases.
 
-## Single-node upgrade example
+## Upgrade steps - Single-node upgrade example
 
 This section provides an example of a single-node domain upgrade from API Gateway version 7.5.x or 7.6.x (in this case, 7.5.1) to API Gateway 7.7.
 
@@ -124,11 +142,11 @@ The sample topology is as follows:
 
 ![Single-node topology](/Images/UpgradeGuide/APIgw_single%20node%20upgrade%20topology.png)
 
-### Check the old installation
+### Before you upgrade - Check the old installation
 
 Perform the checks on your old API Gateway 7.5.1 installation, as detailed in [Checklist for the old API Gateway installation](#checklist-for-the-old-api-gateway-installation).
 
-### Install API Gateway 7.7
+### Step 1 - Install API Gateway 7.7
 
 1. Select the **Custom** option in the installer as follows:
     * Admin Node Manager - Select this component.
@@ -140,13 +158,13 @@ Perform the checks on your old API Gateway 7.5.1 installation, as detailed in [C
 2. When prompted for an installation directory, enter a new directory (for example, `/opt/Axway-7.7`). A warning message displays if you try to install 7.7 in the same directory as the old installation.
 3. When prompted to set an administrator user name and password, enter the same Admin Node Manager credentials that you use for the old API Gateway installation.
 
-### Check the new installation
+### Step 2 - Update and check the new installation
 
 When the installation is complete, perform the new installation checks detailed in [Checklist for the new API Gateway 7.7 installation](#checklist-for-the-new-api-gateway-7-7-installation).
 
-### Run `export` and `upgrade`
+### Step 3 - Export the data from the old installation and upgrade it
 
-Before running `export`, ensure that the old API Gateway processes are running. This includes, for example, all Admin Node Managers, Node Managers, and API Gateway instances. These processes must be running in the old installation to export the API Gateway configuration data.
+{{< alert title="Caution" color="warning" >}}Before running `export`, you must ensure that the old API Gateway processes are running, including all Admin Node Managers, Node Managers, and API Gateway instances. These processes must be running in the old installation to export the API Gateway configuration data.{{< /alert >}}
 
 The following example shows how to run the `export` and `upgrade` commands:
 
@@ -160,9 +178,9 @@ If there are any errors or warnings, you are prompted to examine the `sysupgrade
 
 You must resolve any errors before proceeding. You can rerun `export` and `upgrade` multiple times until all issues are resolved.
 
-### Run `apply`
+### Step 4 - Apply the upgraded data to the new installation
 
-Before running `apply`, stop the API Gateway processes in the old installation and ensure that Cassandra is already running.
+{{< alert title="Caution" color="warning" >}}Before running `apply`, you must stop the API Gateway processes in the old installation and ensure that Cassandra is already running. {{< /alert >}}
 
 The following example shows how to run the `apply` command:
 
@@ -175,7 +193,7 @@ This upgrades the external OAuth and KPS databases (if necessary), creates a new
 
 When all steps have completed successfully, the new API Gateway version 7.7 processes should be running.
 
-### Run `update-apimanager`
+### Step 5 - Run `update-apimanager`
 
 If API Manager is installed, you must now run the `update-apimanager` script.
 
@@ -199,7 +217,7 @@ The following command shows an example of running the `update-apimanager` script
 
 If the API Gateway group is protected by a passphrase, you must append the command with `--passphrase=API_MGR_GROUP_PASSPHRASE`.
 
-### Verify the upgrade
+### Step 6 - Verify the upgrade
 
 To verify that the upgrade has been successful:
 
@@ -207,7 +225,7 @@ To verify that the upgrade has been successful:
 * Start Policy Studio, and create a new project based on the running API Gateway. You can view the upgraded configuration (for example, policies, settings, and so on).
 * If you were using OAuth client applications in your old installation, start the Client Application Registry web interface, and view the client applications.
 
-## Multi-node upgrade example
+## Upgrade steps - Multi-node upgrade example
 
 This topic provides an example of a multi-node domain upgrade from API Gateway version 7.5.x or 7.6.x (in this case, 7.5.1) to API Gateway 7.7.
 
@@ -232,11 +250,11 @@ The sample topology is as follows:
 * API Gateway NodeB: This node runs a Node Manager and a single API Gateway named `APIGateway2` in a group named `GatewayGroup`.
 * API Manager-enabled NodeC: This node runs an Admin Node Manager and a single API Manager-enabled API Gateway named `APIManagerGateway` in a group named `GatewayManagerGroup`.
 
-### Check the old installation on each node
+### Before you upgrade - Check the old installation on each node
 
 Perform the checks on your old API Gateway 7.5.1 installation, as detailed in [Checklist for the old API Gateway installation](#checklist-for-the-old-api-gateway-installation).
 
-### Install API Gateway 7.7 on each node
+### Step 1 - Install API Gateway 7.7 on each node
 
 Install API Gateway 7.7 on each node in the multi-node topology where your old API Gateway domain is running.
 
@@ -250,11 +268,11 @@ Install API Gateway 7.7 on each node in the multi-node topology where your old A
 2. When prompted for an installation directory, enter a new directory (for example, `/opt/Axway-7.7`). A warning message displays if you try to install 7.7 in the same directory as the old installation.
 3. When prompted to set an administrator user name and password, enter the same Admin Node Manager credentials that you use for the old API Gateway installation.
 
-### Check the new installation on each node
+### Step 2 - Update and check the new installation on each node
 
 When the installation is complete, perform the new installation checks detailed in [Checklist for the new API Gateway 7.7 installation](#checklist-for-the-new-api-gateway-7-7-installation).
 
-### Run `export` and `upgrade` on each node
+### Step 3 - Export the data from the old installation and upgrade it on each node
 
 Run the `export` and `upgrade` commands on each node (NodeA, NodeB, and NodeC). You can run and rerun these commands on NodeA, NodeB, and NodeC in any node order.
 
@@ -278,7 +296,7 @@ If there are any errors or warnings, you are prompted to examine the `sysupgrade
 
 You must resolve any errors before proceeding. You can rerun `export` and `upgrade` multiple times until all issues are resolved.
 
-### Run `apply` on the first Admin Node Manager
+### Step 4 - Apply the upgraded data to the new installation on the first Admin Node Manager
 
 Run `apply` on the first Admin Node Manager node (NodeA).
 
@@ -293,7 +311,7 @@ cd /opt/Axway-7.7/apigateway/upgrade/bin
 
 The version 7.7 Admin Node Manager and API Gateway are now running on NodeA. You can launch the version 7.7 API Gateway Manager web console on `https://NodeA:8090`.
 
-### Run `apply` on the other nodes
+### Step 5 - Apply the upgraded data to the new installation on the other nodes
 
 Run `apply` on the other nodes in turn (NodeB and then NodeC).
 
@@ -306,11 +324,11 @@ cd /opt/Axway-7.7/apigateway/upgrade/bin
 
 `sysupgrade` is now complete on all nodes. All the API Gateway 7.7 processes are running on all nodes in the topology.
 
-### Run `update-apimanager` on each API Manager node
+### Step 6 - Run `update-apimanager` on each API Manager node
 
 If API Manager is installed, follow the steps in [Run update-apimanager](#run-update-apimanager).
 
-### Verify the multi-node upgrade
+### Step 7 - Verify the multi-node upgrade
 
 Verify the upgrade as detailed in [Verify the upgrade](#verify-the-upgrade).
 
