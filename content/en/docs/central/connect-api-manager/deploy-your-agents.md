@@ -162,6 +162,65 @@ central:
     timeout: 10s
 ```
 
+#### Customizing SMTP Notification (subscription)
+
+The SMTP Notification section defines how the agent manages email settings for subscriptions.
+
+`host`: SMTP server where the email notifications will originate from.
+
+`port`: Port of the SMTP server.
+
+`fromAddress`: Email address which will represent the sender.
+
+`username`: Login user for the SMTP server.
+
+`password`: Login password for the SMTP server.
+
+`subscribe.subject`: Subject of the email notification for action subscribe. Default is **Subscription Notification**.
+
+`subscribe.body`: Body of the email notification for action subscribe. Default is **Subscription created for Catalog Item:  {catalogItem} Subscription key: {subscriptionKey}**.
+
+`unsubscribe.subject`: Subject of the email notification for action unsubscribe. Default is **Subscription Removal Notification**.
+
+`unsubscribe.body`: Body of the email notification for action unsubscribe. Default is **Subscription for Catalog Item: {catalogItem} has been unsubscribed**.
+
+`subscribeFailed.subject`: Subject of the email notification for action subscribe failed. Default is **Subscription Failed Notification**.
+
+`subscribeFailed.body`: Body of the email notification for action subscribe failed. Default is **Could not subscribe to CatalogItem: {catalogItem}**.
+
+`unsubscribeFailed.subject`: Subject of the email notification for action unsubscribe failed. Default is **Subscription Removal Failed Notification**.
+
+`unsubscribeFailed.body` : Body of the email notification for action unsubscribe failed. Default is **Could not unsubscribe to Catalog Item: {catalogItemURL} {catalogItemName}**.
+
+Once all data is gathered, this section should look like this for subscription STMP Notification:
+
+```
+subscriptions:
+  smtp:
+    host: mail.outlook.com
+    port: 25
+    fromAddress: fromAddress@outlook.com
+    username: outlookuser
+    password:
+    subscribe:
+      subject: Subscription Notification
+      body: |
+        Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
+        Subscription key: <b>${key}</b>
+    unsubscribe:
+      subject: Subscription Removal Notification
+      body: |
+        Subscription for Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a> has been unsubscribed
+    subscribeFailed:
+      subject: Subscription Failed Notification
+      body: |
+        Could not subscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
+    unsubscribeFailed:
+      subject: Subscription Removal Failed Notification
+      body: |
+        Could not unsubscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
+```
+
 #### Customizing log section (log)
 
 The log section defines how the agent is managing its logs.
@@ -218,6 +277,31 @@ central:
     publicKey: /home/APIC-agents/public_key
     keyPassword:
     timeout: 10s
+
+subscriptions:
+  smtp:
+    host: mail.outlook.com
+    port: 25
+    fromAddress: fromAddress@outlook.com
+    username: outlookuser
+    password:
+    subscribe:
+      subject: Subscription Notification
+      body: |
+        Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
+        Subscription key: <b>${key}</b>
+    unsubscribe:
+      subject: Subscription Removal Notification
+      body: |
+        Subscription for Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a> has been unsubscribed
+    subscribeFailed:
+      subject: Subscription Failed Notification
+      body: |
+        Could not subscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
+    unsubscribeFailed:
+      subject: Subscription Removal Failed Notification
+      body: |
+        Could not unsubscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
 
 log:
   level: info
