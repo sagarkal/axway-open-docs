@@ -21,11 +21,11 @@ If you have a 7.6.2 API Portal installation, you can upgrade to API Portal 7.7 w
 
 The following table shows the path for upgrading API Portal versions:
 
-| From   | To                                  |
-| ------ | ----------------------------------- |
-| Any previous version  | 7.6.2               |
-| 7.6.2  | [7.7 GA](https://axway-open-docs.netlify.app/docs/apim_relnotes/201904_release/apip_relnotes/)                              |
-| 7.7 GA | [7.7.x](https://axway-open-docs.netlify.app/docs/apim_relnotes/20200130_apip_relnotes/) (Including all Service Packs) |
+| From                 | To                                                                                                                    |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Any previous version | 7.6.2                                                                                                                 |
+| 7.6.2                | [7.7 GA](https://axway-open-docs.netlify.app/docs/apim_relnotes/201904_release/apip_relnotes/)                        |
+| 7.7 GA               | [7.7.x](https://axway-open-docs.netlify.app/docs/apim_relnotes/20200130_apip_relnotes/) (Including all Service Packs) |
 
 To upgrade your API Portal software installation, follow these steps:
 
@@ -47,7 +47,7 @@ To upgrade your API Portal software installation, follow these steps:
 8. Enter the following to run the upgrade script:
 
    ```
-   ./apiportal_upgrade.sh
+   sudo ./apiportal_upgrade.sh
    ```
 
 ## Post-upgrade steps
@@ -97,7 +97,7 @@ Similarly, the original `.htaccess` file is backed up to `${apiportal-install-di
 If you are using the Public API mode in API Portal you must run a script to encrypt the Public API mode user password and specify a directory to store the encryption key.
 
 ```
-sh ./apiportal_encryption.sh
+sudo sh ./apiportal_encryption.sh
 ```
 
 The directory is created along with a file. The last segment of the directory is the file name, for example: `/sample/directory/for/encryption/key` creates an empty file named "key" in the desired directory.
