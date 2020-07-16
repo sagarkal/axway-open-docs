@@ -31,7 +31,7 @@ Browse all documentation for AMPLIFY Central and AMPLIFY Unified Catalog under t
 Here are some suggestions to get started:
 
 * [Get started with AMPLIFY Central](/docs/central/quickstart/)
-* [Get started with AMPLIFY CLI](/docs/central/cli_getstarted/)
+* [Get started with AMPLIFY CLI](/docs/central/cli_central/)
 * [AMPLIFY Unified Catalog](/docs/catalog/)
 
 ## AMPLIFY Streams documentation

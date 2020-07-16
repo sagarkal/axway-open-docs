@@ -99,7 +99,11 @@ To create an API Gateway instance, perform the following steps:
 
 ## Test the health of an API Gateway instance
 
-You can test the connection to the new API Gateway instance by connecting to the Health Check service. For example, enter the following default URL in your browser: <http://HOST:8080/healthcheck>
+You can test the connection to the new API Gateway instance by connecting to the Health Check service. For example, enter the following default URL in your browser:
+
+```
+http://HOST:8080/healthcheck
+```
 
 This should display a simple `<status>ok</status>` message.
 

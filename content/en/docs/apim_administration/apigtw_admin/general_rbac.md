@@ -235,7 +235,7 @@ For more details on managing user roles, see [Manage Admin users](/docs/apim_adm
 
 You can use the following  for reference purposes when making changes to the `acl.json` file. It defines each Management Service, and the default roles that have access to them. It also lists the permissions that must be listed in the `acl.json` file to have access to the Management Service.
 
-**API Gateway Manager (<https://localhost:8090>)**:
+**API Gateway Manager (`https://localhost:8090`)**:
 
 * Default Roles
 
