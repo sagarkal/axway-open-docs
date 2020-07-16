@@ -16,6 +16,7 @@ The destination for:
 * Agent Authentication data is `login.axway.com`
 * API definition (Swagger or WSDL) and API documentation data is `apicentral.axway.com`
 * API Event data, the transaction summary and headers, is `ingestion-lumberjack.datasearch.axway.com`
+* Subscription notification for getting platform user information is `platform.axway.com`
 
 ## Communication ports
 
@@ -30,6 +31,7 @@ Open the following ports so that agents can communicate to the AMPLIFY platform:
 | apicentral.axway.com                      | 443  | HTTPS    | API definitions, Subscription info |
 | login.axway.com                           | 443  | HTTPS    | Authentication                     |
 | ingestion-lumberjack.datasearch.axway.com | 453  | TCP      | API event data                     |
+| platform.axway.com                        |      | HTTPS    | Platform user info                 |
 
 Other ports which may need to be opened so that the Agent may monitor API Gateway / Manager are:
 
@@ -45,6 +47,10 @@ Other ports which may need to be opened so that the Agent may monitor API Gatewa
 | Host          | Port           | Protocol | Data                                                               |
 | ------------- | -------------- | -------- | ------------------------------------------------------------------ |
 | Agent Host(s) | 8989 (default) | HTTPS    | Serves the status of the agent and its dependencies for monitoring |
+
+## Subscription notifications
+
+SMTP and/or a webhook URL can be set up to send subscription notifications on both subscribe and unsubscribe actions.  You can find the configuration to set up the SMTP or webhook URL here [Deploy your agents](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-api-manager/deploy-your-agents/index.html)
 
 ## Using proxies
 
@@ -122,10 +128,9 @@ A return of **"curl: (52) Empty reply from server"** validates the connection wa
 
     * **Possible Resolution:** Tell curl to resolve the hostname on the proxy:
 
-      ```shell
-      curl -x socks5h://{{proxy_host}}:{{proxy_port}} ingestion-lumberjack.datasearch.axway.com
-      ```
-
+    ```shell
+    curl -x socks5h://{{proxy_host}}:{{proxy_port}} ingestion-lumberjack.datasearch.axway.com
+    ```
 * **Error:**
 
   ```shell
@@ -136,8 +141,8 @@ A return of **"curl: (52) Empty reply from server"** validates the connection wa
 
     * **Possible Resolution:** Provide authentication to the proxy:
 
-      ```shell
-      socks5://{{username}}:{{password}}@{{proxy_host}}:{{proxy_port}}
-      ```
+    ```shell
+    socks5://{{username}}:{{password}}@{{proxy_host}}:{{proxy_port}}
+    ```
 
-      The Agents only support the use of username/password authentication method for SOCKS connections.
+    The Agents only support the use of username/password authentication method for SOCKS connections.
