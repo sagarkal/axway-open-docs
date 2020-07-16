@@ -15,9 +15,9 @@ description: Learn how to deploy your Discovery Agent and Traceability Agent so
 * Be sure you have [Prepared AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/index.html)
 * You will need a basic knowledge of Axway API Management solution:
 
-    * where the solution is running (host / port / path to the logs / users)
-    * how to create / publish and API
-    * how to call an API
+    * Where the solution is running (host / port / path to the logs / users)
+    * How to create / publish and API
+    * How to call an API
 
 ## Objectives
 
@@ -41,6 +41,7 @@ The agent can run in the following modes:
     * Default: located in the same directory as the agent binary.
     * Optional: use a dedicated folder where the configuration file is located (use the --pathConfig flag in the agent command line to access the file path).
     * Advanced configuration: properties inside the configuration file can reference environment variables. This enables you to set up only one configuration file that addresses different behaviors (depending on the environment variables). See [Discovery Agent variables](/docs/central/connect-api-manager/discovery-agent-variables/).
+
 * With command line arguments. See [Discovery Agent flags](/docs/central/connect-api-manager/discovery-agent-flags/).
 
 ### Installing the Discovery Agent
@@ -192,10 +193,23 @@ The SMTP Notification section defines how the agent manages email settings for s
 
 `unsubscribeFailed.body` : Body of the email notification for action unsubscribe failed. Default is **Could not unsubscribe to Catalog Item: {catalogItemURL} {catalogItemName}**.
 
-Once all data is gathered, this section should look like this for subscription STMP Notification:
+### Customizing Webhook Notification (subscription)
+
+The webhook Notification section defines how the agent manages to send notifications to a webhook URL.
+
+`url`: url where the webhook server is defined
+
+`headers`: information used to verify the webhook. Provided by the customer, and may include such information as contentType and Authorization
+
+Both webhook and smtp  sections can be configured at the same time.  The agent will attempt the subscription notifications that are set in the agent config.
+
+Once all data is gathered, this section should look like this for subscription Notification:
 
 ```
 subscriptions:
+  webhook:
+    url: https://prod.cloud-elements.com/elements/webhook-v1/mywebhook
+    headers: Header=contentType,Value=application/json, Header=Elements-Formala-Instance-Id,Value=5551212, Header=Authorization,Value=UserF+rYQSfu0w5yIa5q7uNs2MKYcifk8pYpgAUwJtXFnzc=, Organization a171385jbbde8f54f4f55ff8c3bd8bfe
   smtp:
     host: mail.outlook.com
     port: 25
@@ -279,6 +293,9 @@ central:
     timeout: 10s
 
 subscriptions:
+  webhook:
+    url: https://prod.cloud-elements.com/elements/webhook-v1/mywebhook
+    headers: Header=contentType,Value=application/json, Header=Elements-Formala-Instance-Id,Value=5551212,  Header=Authorization,Value=UserF+rYQSfu0w5yIa5q7uNs2MKYcifk8pYpgAUwJtXFnzc=, Organization a171385jbbde8f54f4f55ff8c3bd8bfe
   smtp:
     host: mail.outlook.com
     port: 25
