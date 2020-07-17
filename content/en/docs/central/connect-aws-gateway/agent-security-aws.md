@@ -97,9 +97,9 @@ Authentication to the servers is enforced through tokens, username/password, or 
 
 ## Agent security scans
 
-Axway’s Product Security Office dictates that the agents undergo regular security assessments of supporting infrastructure and application components, including active scans of the core code. Each build of the code runs various static code analysis and software vulnerability tools. We track remediation of findings according to Axway’s Security policy.
+All of Axway’s software is developed under a Secure Software Development Lifecycle; therefore, the agents undergo regular security analysis.
 
-All code in the agents is written in Golang. Axway performs regular vulnerability static analysis using the following tools:
+The agents are implemented in Golang. The following security tools are run against the agents and the findings are remediated:
 
 * Golint - scans the code for possible coding errors or inconsistencies
 

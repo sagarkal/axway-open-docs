@@ -15,9 +15,9 @@ description: Learn how to deploy your Discovery Agent and Traceability Agent so
 * Be sure you have [Prepared AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/index.html)
 * You will need a basic knowledge of Axway API Management solution:
 
-    * where the solution is running (host / port / path to the logs / users)
-    * how to create / publish and API
-    * how to call an API
+    * Where the solution is running (host / port / path to the logs / users)
+    * How to create / publish and API
+    * How to call an API
 
 ## Objectives
 
@@ -41,6 +41,7 @@ The agent can run in the following modes:
     * Default: located in the same directory as the agent binary.
     * Optional: use a dedicated folder where the configuration file is located (use the --pathConfig flag in the agent command line to access the file path).
     * Advanced configuration: properties inside the configuration file can reference environment variables. This enables you to set up only one configuration file that addresses different behaviors (depending on the environment variables). See [Discovery Agent variables](/docs/central/connect-api-manager/discovery-agent-variables/).
+
 * With command line arguments. See [Discovery Agent flags](/docs/central/connect-api-manager/discovery-agent-flags/).
 
 ### Installing the Discovery Agent
@@ -162,6 +163,78 @@ central:
     timeout: 10s
 ```
 
+#### Customizing SMTP Notification (subscription)
+
+The SMTP Notification section defines how the agent manages email settings for subscriptions.
+
+`host`: SMTP server where the email notifications will originate from.
+
+`port`: Port of the SMTP server.
+
+`fromAddress`: Email address which will represent the sender.
+
+`username`: Login user for the SMTP server.
+
+`password`: Login password for the SMTP server.
+
+`subscribe.subject`: Subject of the email notification for action subscribe. Default is **Subscription Notification**.
+
+`subscribe.body`: Body of the email notification for action subscribe. Default is **Subscription created for Catalog Item:  {catalogItem} Subscription key: {subscriptionKey}**.
+
+`unsubscribe.subject`: Subject of the email notification for action unsubscribe. Default is **Subscription Removal Notification**.
+
+`unsubscribe.body`: Body of the email notification for action unsubscribe. Default is **Subscription for Catalog Item: {catalogItem} has been unsubscribed**.
+
+`subscribeFailed.subject`: Subject of the email notification for action subscribe failed. Default is **Subscription Failed Notification**.
+
+`subscribeFailed.body`: Body of the email notification for action subscribe failed. Default is **Could not subscribe to CatalogItem: {catalogItem}**.
+
+`unsubscribeFailed.subject`: Subject of the email notification for action unsubscribe failed. Default is **Subscription Removal Failed Notification**.
+
+`unsubscribeFailed.body` : Body of the email notification for action unsubscribe failed. Default is **Could not unsubscribe to Catalog Item: {catalogItemURL} {catalogItemName}**.
+
+### Customizing Webhook Notification (subscription)
+
+The webhook Notification section defines how the agent manages to send notifications to a webhook URL.
+
+`url`: url where the webhook server is defined
+
+`headers`: information used to verify the webhook. Provided by the customer, and may include such information as contentType and Authorization
+
+Both webhook and smtp  sections can be configured at the same time.  The agent will attempt the subscription notifications that are set in the agent config.
+
+Once all data is gathered, this section should look like this for subscription Notification:
+
+```
+subscriptions:
+  webhook:
+    url: https://prod.cloud-elements.com/elements/webhook-v1/mywebhook
+    headers: Header=contentType,Value=application/json, Header=Elements-Formala-Instance-Id,Value=5551212, Header=Authorization,Value=UserF+rYQSfu0w5yIa5q7uNs2MKYcifk8pYpgAUwJtXFnzc=, Organization a171385jbbde8f54f4f55ff8c3bd8bfe
+  smtp:
+    host: mail.outlook.com
+    port: 25
+    fromAddress: fromAddress@outlook.com
+    username: outlookuser
+    password:
+    subscribe:
+      subject: Subscription Notification
+      body: |
+        Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
+        Subscription key: <b>${key}</b>
+    unsubscribe:
+      subject: Subscription Removal Notification
+      body: |
+        Subscription for Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a> has been unsubscribed
+    subscribeFailed:
+      subject: Subscription Failed Notification
+      body: |
+        Could not subscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
+    unsubscribeFailed:
+      subject: Subscription Removal Failed Notification
+      body: |
+        Could not unsubscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
+```
+
 #### Customizing log section (log)
 
 The log section defines how the agent is managing its logs.
@@ -218,6 +291,34 @@ central:
     publicKey: /home/APIC-agents/public_key
     keyPassword:
     timeout: 10s
+
+subscriptions:
+  webhook:
+    url: https://prod.cloud-elements.com/elements/webhook-v1/mywebhook
+    headers: Header=contentType,Value=application/json, Header=Elements-Formala-Instance-Id,Value=5551212,  Header=Authorization,Value=UserF+rYQSfu0w5yIa5q7uNs2MKYcifk8pYpgAUwJtXFnzc=, Organization a171385jbbde8f54f4f55ff8c3bd8bfe
+  smtp:
+    host: mail.outlook.com
+    port: 25
+    fromAddress: fromAddress@outlook.com
+    username: outlookuser
+    password:
+    subscribe:
+      subject: Subscription Notification
+      body: |
+        Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
+        Subscription key: <b>${key}</b>
+    unsubscribe:
+      subject: Subscription Removal Notification
+      body: |
+        Subscription for Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a> has been unsubscribed
+    subscribeFailed:
+      subject: Subscription Failed Notification
+      body: |
+        Could not subscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
+    unsubscribeFailed:
+      subject: Subscription Removal Failed Notification
+      body: |
+        Could not unsubscribe to Catalog Item: <a href= ${catalogItemUrl}> ${catalogItemName} </a>
 
 log:
   level: info
