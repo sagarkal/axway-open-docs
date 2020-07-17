@@ -328,21 +328,82 @@ log:
 
 ### Running the Discovery Agent
 
+#### Execute Discovery Agent in Foreground
+
+Open a shell and run the following command to start up your agent:
+
+```shell
+cd /home/APIC-agents
+./discovery_agent
+{"level":"info","msg":"Starting Discovery agent for V7 APIGateway (-)","time":"2020-07-06T02:56:20-07:00"}
+{"level":"info","msg":"Services are Ready","time":"2020-07-06T02:56:22-07:00"}
+{"level":"info","msg":"Found new frontend proxy: EMR-System-Surgery","time":"2020-07-06T02:56:22-07:00"}
+{"level":"info","msg":"Found new frontend proxy: Security-HIPAA-Control","time":"2020-07-06T02:56:22-07:00"}
+...
+```
+
+To stop your agent, press Ctrl+C within the shell.
+
+#### Execute Discovery Agent in Background
+
+When executing in the background, it is best to save your logging to a file rather than the console output. See [Customizing log section (log)](#customizing-log-section-\(log\)) above.
+
 Open a shell and run the following command to start up your agent:
 
 ```shell
 cd /home/APIC-agents
 ./discovery_agent &
-
-{"level":"info","msg":"Starting Discovery agent for V7 APIGateway (-)","time":"2020-07-06T02:56:20-07:00"}
-{"level":"info","msg":"Services are Ready","time":"2020-07-06T02:56:22-07:00"}
-{"level":"info","msg":"Found new frontend proxy: EMR-System-Surgery","time":"2020-07-06T02:56:22-07:00"}
-{"level":"info","msg":"Found new frontend proxy: Security-HIPAA-Control","time":"2020-07-06T02:56:22-07:00"}
-.....
-...
+[1] 13186
 ```
 
-To verify if the agent is up and running, open another shell command and run:
+Notice that the line after the execution returns the PID (Process Identifier).
+
+Run the following commands to kill the PID and stop your agent:
+
+```shell
+# to find the PID, if you do not know it
+ps -ef | grep discovery_agent
+ubuntu     13186    4615 16 13:37 pts/1    00:00:02 ./bin/discovery_agent
+
+# to stop the PID
+kill 13186
+```
+
+#### Execute Discovery Agent as a Service
+
+The agent can be installed as a Linux service, with systemd. The following commands will help you utilize the service. These commands install the service abilities and must be run as a root user.
+
+To install the service to execute with user axway and group axway:
+
+```shell
+cd /home/APIC-agents
+sudo ./discovery_agent service install -u axway -g axway
+```
+
+To start the service:
+
+```shell
+cd /home/APIC-agents
+sudo ./discovery_agent service start
+```
+
+To stop the service:
+
+```shell
+cd /home/APIC-agents
+sudo ./discovery_agent service stop
+```
+
+To enable the service to start when the machine starts:
+
+```shell
+cd /home/APIC-agents
+sudo ./discovery_agent service enable
+```
+
+#### Verify Discovery Agent is Running
+
+To verify if the agent is up and running, open a shell and run:
 
 ```shell
 cd /home/APIC-agents
@@ -748,12 +809,79 @@ logging:
 
 Open a shell and run the following command to start up your agent:
 
+#### Execute Traceability Agent in Foreground
+
+Open a shell and run the following command to start up your agent:
+
+```shell
+cd /home/APIC-agents
+./traceability_agent
+...
+```
+
+To stop your agent, press Ctrl+C within the shell.
+
+#### Execute Traceability Agent in Background
+
+When executing in the background, it is best to save your logging to a file rather than the console output. See [Customizing log section (log)](#customizing-log-section-\(logging\)) above.
+
+Open a shell and run the following command to start up your agent:
+
 ```shell
 cd /home/APIC-agents
 ./traceability_agent &
+[1] 13186
 ```
 
-To verify if the agent is up and running, open another shell command and run:
+Notice that the line after the execution returns the PID (Process Identifier).
+
+Run the following commands to kill the PID and stop your agent:
+
+```shell
+# to find the PID, if you do not know it
+ps -ef | grep traceability_agent
+ubuntu     13186    4615 16 13:37 pts/1    00:00:02 ./bin/traceability_agent
+
+# to stop the PID
+kill 13186
+```
+
+#### Execute Traceability Agent as a Service
+
+The agent can be installed as a Linux service, with systemd. The following commands will help you utilize the service. These commands install the service abilities and must be run as a root user.
+
+To install the service to execute with user axway and group axway:
+
+```shell
+cd /home/APIC-agents
+sudo ./traceability_agent service install -u axway -g axway
+```
+
+To start the service:
+
+```shell
+
+cd /home/APIC-agents
+sudo ./traceability_agent service start
+```
+
+To stop the service:
+
+```shell
+cd /home/APIC-agents
+sudo ./traceability_agent service stop
+```
+
+To enable the service to start when the machine starts:
+
+```shell
+cd /home/APIC-agents
+sudo ./traceability_agent service enable
+```
+
+#### Verify Traceability Agent is Running
+
+To verify if the agent is up and running, open a shell command and run:
 
 ```shell
 cd /home/APIC-agents
