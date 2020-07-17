@@ -10,7 +10,7 @@ CA SiteMinder is a centralized web access management system that provides user a
 
 CA SiteMinder authenticates end users and authorizes them to access protected web resources. The gateway can request SiteMinder to authenticate end users using the user profiles stored in the SiteMinder server. SiteMinder decides whether the user should be authenticated, and the gateway then enforces this decision. API Gateway can also request SiteMinder to make authorization decisions on behalf of end users that have successfully authenticated to the gateway.
 
-Integration with CA SiteMinder requires CA SiteMinder version 12.52. For more information on CA SiteMinder, go to the [CA Technologies website](http://www.ca.com/usl).
+Integration with CA SiteMinder requires CA SiteMinder version 12.52. For more information on CA SiteMinder, go to the [CA Technologies website](https://www.broadcom.com/products/cyber-security/identity/siteminder).
 
 ## Flow description
 

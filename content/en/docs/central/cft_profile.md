@@ -12,7 +12,7 @@ description: Learn how to configure a CFT (Cross File Transfer) profile in AMPLI
 
 ## Objectives
 
-Learn how to configure a CFT (Cross File Transfer) profile. A CFT profile can be used with subscriptions to MFT services that require file exchanges between internal applications. To learn more about subscriptions to MFT services, see [Subscriptions](https://docs.axway.com/bundle/FlowCentral_10_allOS_en_HTML5/page/subscriptions.html).
+Learn how to configure a CFT (Cross File Transfer) profile. A CFT profile can be used with subscriptions to MFT services that require file exchanges between internal applications. To learn more about subscriptions to MFT services, see [Subscriptions](https://docs.axway.com/bundle/FlowManager_20_allOS_en_HTML5/page/subscriptions.html).
 
 ## Add CFT profile to an application
 
@@ -36,7 +36,7 @@ To delete the Profile, click the **Trash can** icon.
 
 {{< alert title="Note" color="" >}}A **Profile** used for a catalog subscription cannot be updated or deleted.{{< /alert >}}
 
-For more information on how to create and deploy a flow using Flow Central, see [Transfer CFT](https://docs.axway.com/bundle/FlowCentral_10_allOS_en_HTML5/page/first_flow_central_file_transfer.html).
+For more information on how to create and deploy a flow using Flow Central, see [Transfer CFT](https://docs.axway.com/bundle/FlowManager_20_allOS_en_HTML5/page/first_flow_manager_file_transfer.html).
 
 ## Review
 

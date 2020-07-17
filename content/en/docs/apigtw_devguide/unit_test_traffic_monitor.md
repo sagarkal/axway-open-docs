@@ -72,7 +72,7 @@ Perform the following steps to write a JUnit test for the Health Check policy fi
     }
     ```
 
-For more information on the client assertion methods, go to [API Gateway Javadoc](https://support.axway.com/htmldoc/1433380).
+For more information on the client assertion methods, go to [API Gateway Javadoc](https://support.axway.com/htmldoc/1444954).
 
 ## Debug custom Java code with a Java debugger
 

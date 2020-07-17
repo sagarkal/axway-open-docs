@@ -104,7 +104,7 @@ To add a new content language and main menu, follow these steps:
 3. On the **Details** tab, enter the **Title** and **Title Native** for the new language. The titles can be the same.
 4. Enter the Joomla! **Language Tag**. Ensure that you enter the tag in the correct format. You must use "`-`" instead of "`_`" (for example, `fr-FR`).
 5. In **URL Language Code**, enter the language identifier to use in the language-specific URL (for example, `fr`). The identifier must be unique for each language.
-6. Set **Status** to **Unpublished**, and click **Save & Close**. For more details on the parameters, see the tutorial for [Joomla! Language Switcher](https://docs.joomla.org/Language_Switcher_Tutorial#The_.22Content.22_tab_in_Language_Manager).
+6. Set **Status** to **Unpublished**, and click **Save & Close**. For more details on the parameters, see the tutorial for [Joomla! Language Switcher](https://docs.joomla.org/J3.x:Setup_a_Multilingual_Site/Language_Switcher).
 7. In the JAI top navigation bar, click **Menus > Manage > Add New Menu**.
 8. In **Title**, enter the title to be shown in drop-down lists (for example, `Main menu (fr)`).
 9. On the **Menu Details** tab, in **Menu Type**, enter a system identifier for the new main menu (for example, `mainmenufr`).

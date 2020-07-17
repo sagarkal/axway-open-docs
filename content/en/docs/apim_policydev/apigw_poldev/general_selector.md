@@ -175,7 +175,7 @@ ${http.response.status >= 200 && http.response.status <= 299}
 
 {{< alert title="Tip" color="primary" >}}You can use the **Trace**
 filter to determine the appropriate selector expressions to use for specific message attributes. When configured after another filter, the **Trace** filter outputs the available message attributes and their Java type (for example, `Map`
-or `List`). For details on `com.vordel` classes, see the [API Gateway Javadoc](https://support.axway.com/htmldoc/1433380)
+or `List`). For details on `com.vordel` classes, see the [API Gateway Javadoc](https://support.axway.com/htmldoc/1444954)
 . For example, for the `OAuth2AccessToken`
 class, you can use selector expressions such as `${accesstoken.getAdditionalInformation()}`.{{< /alert >}}
 

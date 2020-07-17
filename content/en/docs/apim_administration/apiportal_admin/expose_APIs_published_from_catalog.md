@@ -9,7 +9,7 @@ description: Configure API Portal to expose APIs, Applications, and
 ---
 {{< alert title="Public beta" color="warning" >}}This feature is currently **experimental**, and it is available for a technical preview only by way of a Docker image.{{< /alert >}}
 
-Before you start, you must create a Service account in AMPLIFY Central to use this feature. To learn more see, [Create a service account](/docs/central/cli_getstarted/#create-a-service-account).
+Before you start, you must create a Service account in AMPLIFY Central to use this feature. To learn more see, [Create a service account](/docs/central/cli_central/cli_install/#create-a-service-account).
 
 ## Set up the connection to AMPLIFY
 

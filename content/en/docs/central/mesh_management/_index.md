@@ -40,7 +40,7 @@ The data plane in an AMPLIFY Central hybrid environment is logically split into 
 * Service mesh data plane – Consists of a set of intelligent proxies (Envoy) deployed as sidecars on your microservices.
 * Service mesh control plane – Axway mesh agents manage Istio, which in turn manages and configures the proxies to route traffic. Istio also controls how Envoy exposes proxies and routes traffic inside the mesh.
 
-For more information on Istio and Envoy, see the [Istio documentation](https://istio.io/docs/).
+For more information on Istio and Envoy, see the [Istio documentation](https://istio.io/latest/docs/).
 
 ### AMPLIFY Central hybrid environment
 

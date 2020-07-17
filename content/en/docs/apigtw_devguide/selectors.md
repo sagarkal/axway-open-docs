@@ -158,4 +158,4 @@ For more information, see `java.util.ArrayList` and `java.lang.String` class int
 
 A Key Property Store (KPS) is an external data store of API Gateway policy properties, which is typically read frequently, and seldom written to. Using a KPS enables metadata-driven policies, whereby policy configuration is stored in an external data store, and looked up dynamically when policies are executed.
 
-For more information on KPS, see the [API Gateway Policy Developer Guide](/docs/apim_policydev/apigw_poldev/) and also the [API Gateway Key Property Store User Guide](https://docs.axway.com/bundle/APIGateway_77_KPSUserGuide_allOS_en_HTML5).
+For more information on KPS, see the [API Gateway Policy Developer Guide](/docs/apim_policydev/apigw_poldev/) and also the [API Gateway Key Property Store User Guide](/docs/apim_policydev/apigw_kps/).

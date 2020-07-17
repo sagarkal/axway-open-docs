@@ -703,7 +703,7 @@ The following example shows the JSON format used for an HTTP `transaction` event
 }
 ```
 
-For details on `custom` event entries, see the [API Gateway Javadoc](https://support.axway.com/htmldoc/1433380). The `com.vordel.reporting.rtm.api.MetricGroup class` includes details on the Java API and the resulting metric event in the transaction event log.
+For details on `custom` event entries, see the [API Gateway Javadoc](https://support.axway.com/htmldoc/1444954). The `com.vordel.reporting.rtm.api.MetricGroup class` includes details on the Java API and the resulting metric event in the transaction event log.
 
 ### Configure the transaction event log
 
