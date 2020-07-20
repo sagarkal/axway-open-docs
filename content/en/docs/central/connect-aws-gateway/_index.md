@@ -1,15 +1,14 @@
 ---
 title: Connect AWS Gateway
 linkTitle: Connect AWS Gateway
-draft: false
 no_list: true
+draft: false
 weight: 140
 description: Understand why you would want a connected / managed environment for
   AWS API Gateway within AMPLIFY Central. Learn how you can govern and monitor
   the creation / deployment / publishing and subscriptions of the AWS API
   Gateway hosted APIs in one central location.
 ---
-
 ## Why do you want to connect AWS API Gateway and AMPLIFY Central?
 
 Connecting AWS API Gateway to AMPLIFY Central will provide you with a global centralized view of your APIs and their related traffic.
@@ -27,7 +26,7 @@ The Discovery Agent is used to discover  new deployments and stage updates to ex
 * AWS CloudWatch - Monitors resources and AWS applications in real time. Receives and routes supported AWS Service events.
 * AWS SQS - Decouples and scales microservices, distributed systems and serverless applications.
 
-![Service Discovery](/Images/central/ServiceDiscovery.png)
+![Service Discovery](/Images/central/connect-aws-gateway/aws-discovery-agent_v2.png)
 
 ### Traceability Agent
 
@@ -44,7 +43,7 @@ The types of logging you can do with API Gateway to CloudWatch.
 
 For additional logging information, see <https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html>.
 
-![Service Discovery](/Images/central/Traceabilityagent.png)
+![Service Discovery](/Images/central/connect-aws-gateway/aws-traceability-agent_v2.png)
 
 ## Minimum requirements
 
@@ -67,12 +66,14 @@ An AMPLIFY Central Service Account. See [See create Service Account](/docs/centr
 
 * Set up using the resources using [AWS CloudFormation](/docs/central/connect-aws-gateway/prepare-aws-api-gateway/#set-up-the-cloudformation)
 * Get the required templates at [https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/](<https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/>)
+
     * IAM configuration (apigw_iam_setup.yaml)
     * Discovery and Traceability resource configuration (apigw_cloudformation.yaml)  
 
 ### 3. Create a Discovery Agent environment file
 
 * Learn more about the [Discovery Agent](/docs/central/connect-aws-gateway/deploy-your-agents-1/#discovery-agent)
+
     * Create the Discovery Agent configuration file
     * Pull the latest Docker image of the Discovery Agent
     * Start the Discovery Agent  
@@ -80,6 +81,7 @@ An AMPLIFY Central Service Account. See [See create Service Account](/docs/centr
 ### 4. Create a Traceability Agent environment file
 
 * Learn more about the [Traceability Agent](/docs/central/connect-aws-gateway/deploy-your-agents-1/#traceability-agent)
+
     * Create the Traceability Agent configuration file
     * Log into the Artifactory Repository and pull the latest image of the Traceability Agent.
     * Start the Traceability Agent.
