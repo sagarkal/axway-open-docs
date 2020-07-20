@@ -34,7 +34,7 @@ Create a Service Account in AMPLIFY Central.
 
     {{< alert title="Note" color="primary" >}}The public key can be either of type .der format or of type base64 encoded of the .der format.{{< /alert >}}
 
-2. Create a new Service Account user in API Central UI using the key pair from above. For additional information, see [Create a service account](/docs/central/cli_central/cli_install/).
+2. Create a new Service Account user in API Central UI using the key pair from above. For additional information, see [Create a service account](/docs/central/cli_central/cli_install/#create-a-service-account).
 
 ## Create an environment
 

@@ -39,7 +39,7 @@ Other ports which may need to be opened so that the Agent may monitor API Gatewa
 | Host             | Port           | Protocol | Data                                                                                                   |
 | ---------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------ |
 | API Manager Host | 8075 (default) | HTTPS    | API Discovery                                                                                          |
-| API Gateway Host | 8090 (default) | HTTPS    | API Transaction Header data (see [APIGATEWAY GETHEADERS](/docs/central/traceability-agent-variables/)) |
+| API Gateway Host | 8090 (default) | HTTPS    | API Transaction Header data (see [APIGATEWAY GETHEADERS](/docs/central/connect-api-manager/traceability-agent-variables/) |
 
 **Inbound (used for the agent status server)**:
 
@@ -57,11 +57,11 @@ If your network policy restricts outbound traffic such that outbound traffic mus
 
 ### HTTP/HTTPS Proxy
 
-Use a HTTP/HTTPS Proxy for communication to the AMPLIFY Platform.  This configuration is set for both the [Discovery](/docs/central/discovery-agent-variables/) and [Traceability Agents](/docs/central/traceability-agent-variables/).
+Use a HTTP/HTTPS Proxy for communication to the AMPLIFY Platform.  This configuration is set for both the [Discovery](/docs/central/connect-api-manager/discovery-agent-variables/) and [Traceability Agents](/docs/central/connect-api-manager/traceability-agent-variables/).
 
 ### SOCKS5 Proxy
 
-Use a SOCKS5 Proxy for communication to the AMPLIFY Platform when sending API Traffic Events.  This configuration is set only for [Traceability Agents](/docs/central/traceability-agent-variables/).
+Use a SOCKS5 Proxy for communication to the AMPLIFY Platform when sending API Traffic Events.  This configuration is set only for [Traceability Agents](/docs/central/connect-api-manager/traceability-agent-variables/).
 
 ### Proxy authentication
 
