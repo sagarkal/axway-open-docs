@@ -213,19 +213,6 @@ To link your logo to template:
 
 You can customize API Portal standard footer `Copyright © YYYY Axway` to display the name of your company, and you can also add more information to it.
 
-### Override the name of the company
-
-You can display the name of your company in the API Portal standard footer.
-
-1. In the Joomla! Administrator Interface (JAI), click **Extensions > Languages > Overrides**.
-2. Search for the `COM_APIPORTAL_FOOTER_COMPANY` constant and click to edit it.
-3. In the **Text** field, replace `Axway` with the name of your company.
-4. Click **Save**.
-
-### Add rich text to the standard footer
-
-You can customize your company's footer by adding more text to it.
-
 1. In the JAI, click **Extensions > Modules**.
 2. Click **New** to create a new module.
 3. From the list of module types click **Custom**.
