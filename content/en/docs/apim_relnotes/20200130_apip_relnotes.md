@@ -48,6 +48,10 @@ Previously, this setting applied to both the list of APIs and the API details vi
 
 For more information, see [Customize source of API descriptions](/docs/apim_administration/apiportal_admin/customize_apicatalog_overview/#customize-source-of-api-descriptions).
 
+### Change of behavior to customize standard footer
+
+Previously, this setting used text field in **Extensions > Languages > Overrides**. Now, you can [customize API Portal standard footer, and add rich text to it](/docs/apim_administration/apiportal_admin/customize_getting_started/#customize-standard-footer).
+
 ### Control the visibility of APIs in the catalog
 
 A new setting, **Do not show APIs with tags**, was added to the API Catalog menu options. This setting supports `*` and `?` wildcards, and it is a powerful option when used in combination with **Show APIs with tags** setting.
