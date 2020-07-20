@@ -52,7 +52,7 @@ The Traceability Agent requires read write access to SQS and read only access to
 
 ### Minimum requirements
 
-* An AMPLIFY Central Service Account. See [Prepare AMPLIFY Central](https://axway.bintray.com/generic-repo/aws-agents/aws_apigw_agent_config/latest/)
+* [AMPLIFY Central Service Account](/docs/central/connect-aws-gateway/prepare-amplify-central-1/#create-a-service-account)
 
 * [API Key credentials on AWS](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html). Allowing for CLI access.
 

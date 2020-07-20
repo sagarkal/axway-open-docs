@@ -15,7 +15,8 @@ description: A subscription provides the consumer, or subscriber, with the
     2. Click **Subscribe**.
     3. Enter the Team and the usage plan that the Administrator created. **Warning**: The names must match. Otherwise, the subscription will fail.
 
-    For additional information, see [Manage AMPLIFY Catalog subscriptions](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/catalog/catalog/index.html).
+    For additional information, see [Manage AMPLIFY Catalog subscriptions](/docs/catalog/manage_subscriptions/index.html).
+
 3. The Discovery Agent receives the subscription event:
 
     Subscription status: **Subscribing...**
@@ -38,7 +39,8 @@ description: A subscription provides the consumer, or subscriber, with the
     1. Open the AMPLIFY Catalog and navigate to the **Subscription** tab.
     2. Delete the subscription.
 
-    For additional information, see [Manage AMPLIFY Catalog subscriptions](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/catalog/catalog/index.html).
+    For additional information, see [Manage AMPLIFY Catalog subscriptions](/docs/catalog/manage_subscriptions/index.html).
+  
 2. The Discovery Agent receives the Unsubscribe event:
 
     * The `subscriptions-<subscriptionID from AMPLIFY Central>` is removed from the usage plan.
