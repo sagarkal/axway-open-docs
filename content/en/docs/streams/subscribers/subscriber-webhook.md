@@ -32,7 +32,7 @@ The body must contain a JSON webhook subscription configuration as follow:
 
 Once the webhook subscription is successfully created, Streams will start notifying the subscriber at the specified `webhookUrl`.
 
-### Status codes
+### Create status codes
 
 Below the list of HTTP status codes that can be returned when trying to create a webhook subscription:
 
@@ -48,7 +48,8 @@ In order to stop the sending of webhook notifications, simply delete the corresp
 
 `DELETE /subscribers/webhook/topics/{topicId}/subscriptions/{subscriptionId}`
 
-Status codes
+### Delete status codes
+
 Below the list of HTTP status codes that can be returned when deleting the webhook subscription
 
 | Code | Comment |
@@ -66,10 +67,10 @@ The webhook call is an HTTP POST request that contains two types of data: header
 
 | Header name | Description |
 |-------------|-------------|
-| X-Axway-Subscription-Id | Unique identifier of the webhook subscription. |
-| X-Axway-Topic-Id | Identifier of the topic to which the subscription belongs. |
-| X-Axway-Event-Id | Identifier of the event. |
-| X-Axway-Event-Type | Type of the payload (snapshot|patch|error). |
+| X-Axway-Streams-Subscription-Id | Unique identifier of the webhook subscription. |
+| X-Axway-Streams-Topic-Id | Identifier of the topic to which the subscription belongs. |
+| X-Axway-Streams-Event-Id | Identifier of the event. |
+| X-Axway-Streams-Event-Type | Type of the payload (snapshot, patch or error). |
 | Webhook Event Payload | See [Webhook payload samples](#webhook-payload-samples). |
 
 #### Webhook payload samples

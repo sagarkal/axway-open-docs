@@ -7,7 +7,7 @@ description: Learn how to configure a topic associated to a Kafka Publisher.
 ---
 {{< alert title="Beta feature" color="warning" >}}Kafka publisher is still experimental, and will be enhanced in future releases.{{< /alert >}}
 
-Streams can act as a consumer of your dedicated Apache Kafka cluster. It consumes records from one configured topic, then publishes those records into Streams platform to broadcast data to subscribers if a change is detected between two records.
+Streams can act as a consumer of your dedicated Apache Kafka cluster. It consumes records from one configured topic, then publishes those records into Streams platform to broadcast data to any of Streams [subscribers](../../subscribers).
 
 ## Kafka publisher configuration
 
