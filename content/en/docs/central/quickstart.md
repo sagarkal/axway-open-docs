@@ -42,7 +42,9 @@ To monitor API usage and troubleshoot API traffic in AMPLIFY Central UI, click *
 * Click **API Traffic** to view the traffic information. This view is useful for finding and troubleshooting any failed transactions.
   ![Example of API traffic](/Images/central/apiobserver_traffic.png)
 
-**Note: The API Observer API traffic view provides details for up to a maximum of 1000 transactions based on your search. You may need to further restrict the search by time range or other filter criteria to view all results.**
+{{% alert title="Note" %}}
+The API Observer API traffic view provides details for up to a maximum of 1000 transactions based on your search. You might need to further restrict the search by time range, or other filter criteria, to view all results.
+{{% /alert %}}
 
 ## Publish API to AMPLIFY Catalog
 
