@@ -25,7 +25,7 @@ Learn how to build a basic Amazon EC2 private cloud hybrid environment and add t
 
 * Amazon EC2 instance with Kubernetes and Helm:
 
-    * Kubernetes 1.15 is supported
+    * Kubernetes 1.16 is supported
     * Helm 3.2.4 or later is recommended
 
 * Public facing fully qualified domain name (FQDN) of the Amazon EC2 cluster
