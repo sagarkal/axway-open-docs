@@ -24,7 +24,7 @@ Learn how to quickly install and run your Discovery and Traceability agents with
 ## Axway Central CLI prerequisites
 
 * [Node.js](https://nodejs.org/en/download/) version 10.13.0 or later
-* Access to npm package (for installing Amplify cli)
+* Access to npm package (for installing Axway CLI)
 * Access to login.axway.com on port 443
 * Minimum Axway Central CLI version: 0.7.0 (check version using `axway central --version`)
 
