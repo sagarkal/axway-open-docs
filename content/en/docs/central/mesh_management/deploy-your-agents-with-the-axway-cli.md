@@ -27,12 +27,10 @@ For more information about installing the CLI, see [Install Axway Central CLI](/
 
 **Note:** Istio agents are compatible with RedHat OpenShift 4.7 and later. For more information see [Using RedHat OpenShift](/docs/central/mesh_management/using_redhat_openshift/).
 
-## Log in to the Axway Central CLI
-
-Run the following command to log into the Central CLI with your Amplify Platform credentials:
+Run the following command to log into the Axway CLI with your Amplify Platform credentials:
 
 ```shell
-axway auth login --client-id apicentral
+axway auth login
 ```
 
 A dialog box is shown. Enter your valid credentials (email address and password), and after the authorization successful message is displayed, go back to the Axway CLI.
