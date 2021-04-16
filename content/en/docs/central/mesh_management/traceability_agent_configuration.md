@@ -18,7 +18,7 @@ This page will reference the resources created from the [Deploy your agents with
 These prerequisites are required by the Axway Central CLI, which you will use to configure the Istio discovery agents.
 
 * Node.js >= 10.13.0 and <= 12.14.1
-* Minimum Axway Central CLI version: 0.17.0
+* Minimum Axway Central CLI version: 1.2.0 or later
 
 For more information, see [Install Axway Central CLI](/docs/central/cli_central/cli_install/).
 
@@ -33,11 +33,11 @@ The ALS agent has two modes; default and verbose. The default mode captures only
 
 The ALS Traceability Agent logs and publishes traffic within the Mesh. In order to generate traffic, we need to create certain custom resource definitions (CRDs) in the mesh.
 
-### Amplify Central Resources:
+### Amplify Central Resources
 
 In order to better filter transactions related to the services in the mesh, certain resources need to be created for each service running on the mesh - namely APIService, APIServiceRevision and APIServiceInstance. The APIService needs to include the attribute "externalAPIID" in its definition.
 
-The format of externalAPIID is 
+The format of externalAPIID is
 
 ```
 clustername-httproutename
@@ -49,7 +49,7 @@ The cluster name is the value of the field als.clusterName in the agent override
 
 Next, you will need to create the following resources in Central using the Axway CLI:
 
-<u>**Note**</u>: Create these resources manually only if you are running standalone ALS Traceability Agent. If you are running ALS Traceability Agent along with the Discovery agents, these resources are automatically created and you can skip to [Istio CRDs](#istio-crds)
+**Note**: Create these resources manually only if you are running standalone ALS Traceability Agent. If you are running ALS Traceability Agent along with the Discovery agents, these resources are automatically created and you can skip to [Istio CRDs](#istio-crds)
 
 ```yaml
 kind: APIService
@@ -139,7 +139,7 @@ amplify central apply -f <fileName>.yaml
 
 ### Istio CRDs
 
-#### Gateway:
+#### Gateway
 
 First, we will create a Gateway in the namespace in which we installed our Istio agents. Please note if you already have a Gateway CRD, you can skip to [Virtual Service](#virtual-service) and specify that Gateway in the Virtual Service.
 
@@ -195,11 +195,11 @@ Once configured, create the resource using the command:
  kubectl apply -f <fileName>.yaml
  ```
 
-#### Virtual Service:
+#### Virtual Service
 
 Next, we will create the Virtual Service for our included demo service within the mesh. Unless you have already noted down the 'http route name' part of the externalAPIId attribute associated with the APIService from the previous section, the value for it needs to be extracted from the APIService.
 
-First locate the APIService and make a note of its name and the name of the environment under which it is scoped. 
+First locate the APIService and make a note of its name and the name of the environment under which it is scoped.
 
 ```bash
 axway central get apisvc
@@ -259,7 +259,7 @@ Once configured, create the resource using the command:
  kubectl apply -f <fileName>.yaml
  ```
 
-#### Pre-existing Virtual Service:
+#### Pre-existing Virtual Service
 
 If you have a Virtual Service resource already, simply add a name for (or rename) the http route so that the API Service and the related transactions can be linked in API Central:
 
@@ -272,7 +272,7 @@ Example:
 
 **Note** The name specified under http.name field of the VirtualService should be the same as the 'http route name' part of the externalAPIId attribute on the APIService
 
-#### Service Entry:
+#### Service Entry
 
 If you have an egress hop from a service in the mesh, then we need to create a service entry. See the example below:
 
